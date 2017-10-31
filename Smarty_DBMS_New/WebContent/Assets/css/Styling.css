@@ -1,0 +1,443 @@
+@CHARSET "ISO-8859-1";
+
+/*Header Content*/
+
+.header_body{
+	margin : 0px;
+	display: grid;
+}
+
+.header_div {
+	background-color: #dcc1d5;
+    height: 12%;
+    position: fixed;
+    width: 100%;
+}
+
+.header_table td {
+	padding : 14px 10px 16px 47px;
+	width : 100px;
+	border: solid;
+	height : 5%;
+}
+
+.page_body {	
+	    margin-top: 60px;
+    background-color: aliceblue;
+    position: fixed;
+    width: 100%;
+    height: 178%;
+    margin-left: 56px;
+}
+
+/* Login Page */
+
+.login-page {
+	display: flex;
+	flex-direction: row;
+	height: calc(100vh);
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+.login-form {
+	box-shadow: 0 0 3em 0 rgba(6, 3, 216, 0.31);
+	border-radius: 72px;
+	border: 1px solid #cccccc;
+	width: 400px;
+	display: flex;
+	flex-direction: column;
+	flex: 0 0 auto;
+	padding: 50px;
+	background-color: #fafafa;
+}
+.login-form h2 {
+	color: #515a5d;
+	font-size: 18px;
+	line-height: 18px;
+	margin: 30px 0;
+	text-align: center;
+}
+
+.form-row {
+	margin-bottom: 25px;
+}
+
+.input-field label {
+	left: .75rem;
+}
+.input-field label {
+	color: #9e9e9e;
+	position: absolute;
+	top: 0.8rem;
+	left: 0;
+	font-size: 1rem;
+	cursor: text;
+	transition: .2s ease-out;
+	text-align: initial;
+}
+.input-field input:not([type]), .input-field input[type=text], .input-field input[type=password], .input-field input[type=email], .input-field input[type=url], .input-field input[type=time], .input-field input[type=date], .input-field input[type=datetime], .input-field input[type=datetime-local], .input-field input[type=tel], .input-field input[type=number], .input-field input[type=search], textarea.materialize-textarea {
+	background-color: transparent;
+	border: none;
+	border-bottom: 1px solid #9e9e9e;
+	border-radius: 0;
+	outline: none;
+	height: 3rem;
+	width: 100%;
+	font-size: 1rem;
+	margin: 0;
+	padding: 0;
+	box-shadow: none;
+	box-sizing: content-box;
+	transition: all 0.3s;
+}
+.input-field input:not([type]) + label:after, .input-field input[type=text] + label:after, .input-field input[type=password] + label:after, .input-field input[type=email] + label:after, .input-field input[type=url] + label:after, .input-field input[type=time] + label:after, .input-field input[type=date] + label:after, .input-field input[type=datetime] + label:after, .input-field input[type=datetime-local] + label:after, .input-field input[type=tel] + label:after, .input-field input[type=number] + label:after, .input-field input[type=search] + label:after, .input-field textarea.materialize-textarea + label:after {
+	display: block;
+	content: "";
+	position: absolute;
+	top: 60px;
+	opacity: 0;
+	transition: .2s opacity ease-out, .2s color ease-out;
+}
+.input-field {
+	position: relative;
+}
+.input-field input:not([type]):focus:not([readonly]), .input-field input[type=text]:focus:not([readonly]), .input-field input[type=password]:focus:not([readonly]), .input-field input[type=email]:focus:not([readonly]), .input-field input[type=url]:focus:not([readonly]), .input-field input[type=time]:focus:not([readonly]), .input-field input[type=date]:focus:not([readonly]), .input-field input[type=datetime]:focus:not([readonly]), .input-field input[type=datetime-local]:focus:not([readonly]), .input-field input[type=tel]:focus:not([readonly]), .input-field input[type=number]:focus:not([readonly]), .input-field input[type=search]:focus:not([readonly]), .input-field textarea.materialize-textarea:focus:not([readonly]) {
+	border-bottom: 1px solid #12d1db;
+	box-shadow: 0 1px 0 0 #12d1db;
+}
+.input-field input:not([type]):focus:not([readonly]) + label, .input-field input[type=text]:focus:not([readonly]) + label, .input-field input[type=password]:focus:not([readonly]) + label, .input-field input[type=email]:focus:not([readonly]) + label, .input-field input[type=url]:focus:not([readonly]) + label, .input-field input[type=time]:focus:not([readonly]) + label, .input-field input[type=date]:focus:not([readonly]) + label, .input-field input[type=datetime]:focus:not([readonly]) + label, .input-field input[type=datetime-local]:focus:not([readonly]) + label, input[type=tel]:focus:not([readonly]) + label, .input-field input[type=number]:focus:not([readonly]) + label, .input-field input[type=search]:focus:not([readonly]) + label, .input-field textarea.materialize-textarea:focus:not([readonly]) + label {
+	color: #12d1db;
+}
+.input-field label:not(.label-icon).active {
+	font-size: 0.8rem;
+	-webkit-transform: translateY(-140%);
+	transform: translateY(-140%);
+}
+.input-field input:not([type]).validate + label, .input-field input[type=text].validate + label, .input-field input[type=password].validate + label, .input-field input[type=email].validate + label, .input-field input[type=url].validate + label, .input-field input[type=time].validate + label, .input-field input[type=date].validate + label, .input-field input[type=datetime].validate + label, .input-field input[type=datetime-local].validate + label, .input-field input[type=tel].validate + label, .input-field input[type=number].validate + label, .input-field input[type=search].validate + label, .input-field textarea.materialize-textarea.validate + label {
+	width: 100%;
+	pointer-events: none;
+}
+
+.multiple-add li .form-inner-field:before {
+	display: inline-block;
+	content: counter(item) ".";
+	counter-increment: item;
+	width: 18px;
+	margin-left: -18px;
+	text-transform: uppercase;
+	color: #c4c5c8;
+	font-size: 12px;
+	font-weight: 400;
+	position: absolute;
+	top: calc(50% - 9px);
+}
+
+.form-error {
+	color: #ef3934;
+	font-size: 12px;
+	font-weight: normal;
+	line-height: 12px;
+	margin: 0;
+	margin-top: 5px;
+}
+
+::-webkit-input-placeholder {
+
+	/* Chrome/Opera/Safari */
+	color: #999;
+	font-size: 14px;
+	font-weight: normal;
+}
+::-moz-placeholder {
+
+	/* Firefox 19+ */
+	color: #999;
+	font-size: 14px;
+	font-weight: normal;
+}
+:-ms-input-placeholder {
+
+	/* IE 10+ */
+	color: #999;
+	font-size: 14px;
+	font-weight: normal;
+}
+:-moz-placeholder {
+
+	/* Firefox 18- */
+	color: #999;
+	font-size: 14px;
+	font-weight: normal;
+}
+@-webkit-keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+@-moz-keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+.fade-in {
+	opacity: 0;
+	-webkit-animation: fadeIn ease-in 1;
+	-moz-animation: fadeIn ease-in 1;
+	animation: fadeIn ease-in 1;
+	-webkit-animation-fill-mode: forwards;
+	-moz-animation-fill-mode: forwards;
+	animation-fill-mode: forwards;
+	-webkit-animation-duration: 0.8s;
+	-moz-animation-duration: 0.8s;
+	animation-duration: 0.8s;
+}
+
+.red-button {
+	background: #12d1db;
+	color: #fff;
+	border: none;
+	box-shadow: none;
+	display: inline-block;
+	border-radius: 2px;
+	padding: 10px 24px 9px;
+	font-size: 16px;
+	font-weight: normal;
+	min-width: 60px;
+	transition: all .2s;
+	cursor: pointer;
+	line-height: 16px;
+	white-space: nowrap;
+	position: relative;	/*overflow: hidden;*/
+}
+
+.red-button:hover, .red-button:active, .red-button:focus {
+	background: #34e3ec;
+	color: #fff;
+}
+
+
+.logoStyle {
+height: 42px;
+width: 102px;
+margin-top: -13px;
+}
+
+.navbar-form .form-control {
+    display: inline-block;
+    width: 500px;
+    vertical-align: middle;
+    margin-left: 295px;
+}
+
+.navbar {
+    border-radius: 0px;
+	overflow: hidden;
+    //background-color: #333;
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%; /* Full width */
+}
+
+
+.navbar-fixed-left {
+  width: 56px;
+  position: fixed;
+  height: 100%;
+  top: 51px;
+  background-color: #94b0c3;
+  border-color: #94b0c3;
+  z-index: 1;
+}
+
+.navbar-fixed-left .navbar-nav > li {
+  width: 55px;
+  margin-bottom: 34px;
+  top: 20px;
+}
+
+
+.navbar-fixed-left .navbar-nav li div {
+    background-color: #94b0c3;    
+    position: absolute;
+	margin-left: 55px;
+    margin-top: -33px;
+    border-radius: 0px 5px 5px 0px;
+    color: white;
+    height: 38px;
+    width: 100px;
+    padding: 8px;
+	display: none;
+}
+
+.navbar-fixed-left .navbar-nav li:hover div{
+	 display: block;
+}
+
+.sideMenuIcons {
+    height: 30px;
+    width: 27px;
+}
+
+.Maincontainer {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: 0px;
+    margin-left: 56px;
+	position: relative;
+}
+
+
+.innerNavigation {
+    border-radius: 0px;
+    overflow: hidden;
+    position: fixed;
+    top: 64px;
+    width: 100%;
+    margin-left: -15px;
+}
+
+
+/*For Setting Modal Popups*/
+input[type=text], input[type=password], select {
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+/*button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}*/
+
+/*button:hover {
+    opacity: 0.8;
+}*/
+
+/* Extra styles for the cancel button */
+/*.cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+}*/
+
+/* Center the image and position the close button */
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+    position: relative;
+}
+
+img.avatar {
+    width: 40%;
+    border-radius: 50%;
+}
+
+.container {
+    padding: 16px;
+}
+
+span.psw {
+    float: right;
+    padding-top: 16px;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    /*overflow: auto; Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 50%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button (x) */
+.close {
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: red;
+    cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)} 
+    to {-webkit-transform: scale(1)}
+}
+    
+@keyframes animatezoom {
+    from {transform: scale(0)} 
+    to {transform: scale(1)}
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+    span.psw {
+       display: block;
+       float: none;
+    }
+    .cancelbtn {
+       width: 100%;
+    }
+}
+
+.container_bottom {
+    width: 681px;
+    border-radius: 4px;
+    padding: 16px;
+    text-align: center;
+    background-color:#f1f1f1;
+}
+
+/*Modal Popups End*/
