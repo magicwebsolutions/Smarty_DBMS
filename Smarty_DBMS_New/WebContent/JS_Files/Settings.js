@@ -2,94 +2,6 @@ var data = [];
 var dataSet;
 var SelectedRowDataSet =[];
 
-/*function ListCustomers()
-{	
-var URL = gloablContextURL+"/ListCustomer?Event=LISTCUSTOMER";
-if(window.XMLHttpRequest){
-requestOBJ = new XMLHttpRequest();
-}else if(window.ActiveXObject){
-	requestOBJ= new ActivXCObject("Microsoft.XMLHTTP");
-}
-try{
-requestOBJ.onreadystatechange=CustomerResponse;
-requestOBJ.open("POST",URL,true);
-requestOBJ.setRequestHeader("Content-type", "text/xml");
-requestOBJ.send();
-}catch(e){
-alert("Something went wrong");
-}
-
-}
-function CustomerResponse(){
-	var singleGrid;
-	var itemarray;
-if(requestOBJ.readyState==4){
-if(requestOBJ.status==200){
-var responsetext= requestOBJ.responseText;
-responsetext= responsetext.replace("<xml>","");
-if(responsetext.indexOf("~")>0){
-	var finalResponse = responsetext.substring(0, responsetext.lastIndexOf('#'));
-	itemarray = finalResponse.split("#");
-	for(var i=0; i<itemarray.length;i++){
-		data.push(itemarray[i].split('~'));		
-	}
-	data;	
-	dataSet = data;
-	
-	
-	
-	$(document).ready(function() {	
-		var columnDefs = [{
-	          title: "Customer ID",
-	          name: "name"
-	        }, {
-	          title: "Name"
-	        }, {
-	          title: "Phone"
-	        }, {
-	          title: "Address"
-	        }];
-		
-		var myTable;		
-
-        myTable = $('#example').DataTable({
-          "sPaginationType": "full_numbers",
-          data: dataSet,
-          columns: columnDefs,
-          dom: 'Bfrtip',        // Needs button container
-          select: 'single',
-          responsive: true,
-          altEditor: true,     // Enable altEditor
-          buttons: [{
-            text: 'Add',
-            name: 'add'// do not change name
-          },
-          {
-            extend: 'selected', // Bind to Selected row
-            text: 'Edit',
-            name: 'edit'        // do not change name
-          },
-          {
-            extend: 'selected', // Bind to Selected row
-            text: 'Delete',
-            name: 'delete'      // do not change name
-         }]
-        
-        
-
-        });	
-        
-        myTable.on( 'buttons-action', function ( e, buttonApi, dataTable, node, config ) {
-            console.log( 'Button '+buttonApi.text()+' was activated' );
-        } );
-        
-	} );
-	
-}
-}
-}
-}*/
-
 
 function ListCustomers()
 {	
@@ -109,7 +21,6 @@ alert("Something went wrong");
 }
 }
 function ListCustomerResponse(){
-	var singleGrid;
 	var itemarray;
 if(requestOBJ.readyState==4){
 if(requestOBJ.status==200){
@@ -212,7 +123,6 @@ function addNewCustomer(){
 
 
 function AddCustomerResponse(){
-	var singleGrid;
 	var itemarray;
 if(requestOBJ.readyState==4){
 if(requestOBJ.status==200){
@@ -272,17 +182,19 @@ document.addEventListener('keyup', function(e) {
     if (e.keyCode == 27) {
     	CloseModalPopup('addCustomer');
     	CloseModalPopup('editCustomer');
+    	CloseModalPopup('deleteCustomer');
     }
 });
 
 
-/*For setting Selected row data in Popup*/
+/*For setting Selected row data in Edit Popup*/
 function setEditData(){
 	document.getElementById("edit_cust_id").value = SelectedRowDataSet.CustomerID;
 	document.getElementById("edit_cust_name").value = SelectedRowDataSet.Name;
 	document.getElementById("edit_cust_phone").value = SelectedRowDataSet.Phone;
 	document.getElementById("edit_cust_Address").value = SelectedRowDataSet.Address;
 }
+
 
 function showdeleteCustomer(){
 	//alert("SelectedRowID-->"+SelectedRowDataSet.SelectedRowID);
@@ -297,11 +209,3 @@ function deleteSelectedRecord(){
 	document.getElementById("customerListTable").deleteRow(SelectedRowDataSet.SelectedRowID);
 	
 }
-
-
-
-
-
-
-
-

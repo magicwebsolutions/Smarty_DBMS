@@ -22,7 +22,11 @@ if(request.getAttribute("returnFlag_DeleteCustomer")!=null && request.getAttribu
         table.dataTable tbody>tr>.selected {
           background-color: #A2D3F6;
         }
-      </style>
+        
+        th {
+        width : 14.25%;
+        }
+</style>
 
 <title>Settings</title>
 </head>
@@ -32,10 +36,10 @@ if(request.getAttribute("returnFlag_DeleteCustomer")!=null && request.getAttribu
 	<nav class="innerNavigation navbar-default">
 	 <div id="navbarCollapse" class="collapse navbar-collapse">
            <ul class="nav navbar-nav">
-               <li class="active"><a href="#">Customers</a></li>
-               <li><a href="#">Customer Types</a></li>
-               <li><a href="#">Items</a></li>
-			<li><a href="#">Profile</a></li>
+               <li class="active"><a href="<%=request.getContextPath()%>/JSP_Pages/Settings.jsp">Customers</a></li>
+               <li><a href="<%=request.getContextPath()%>/JSP_Pages/Settings_CustomerTypes.jsp")>Customer Types</a></li>
+               <li><a href="<%=request.getContextPath()%>/JSP_Pages/Settings_ItemTypes.jsp">Items</a></li>
+			<li><a href="<%=request.getContextPath()%>/JSP_Pages/Settings_Profile.jsp">Profile</a></li>
            </ul>
        </div>
 	</nav>
@@ -80,8 +84,8 @@ if(request.getAttribute("returnFlag_DeleteCustomer")!=null && request.getAttribu
       
       <label for="Cust_type">Customer Type</label> <br>
 	    <select id="Cust_type" name="Cust_type">
-	      <option value="Hotel">Hotel</option>
-	      <option value="Individual">Individual</option>
+	      <option value="HOTEL">Hotel</option>
+	      <option value="INDIVIDUAL">Individual</option>
 	    </select> <br>     
     </div>
     <div class="container_bottom">
