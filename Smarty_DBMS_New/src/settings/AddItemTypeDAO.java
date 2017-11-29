@@ -35,18 +35,17 @@ public class AddItemTypeDAO {
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally{
-			      //finally block used to close resources
 			      try{
 			         if(psmt1!=null)
 			            conn.close();
 			      }catch(SQLException se){
-			      }// do nothing
+			      }
 			      try{
 			         if(conn!=null)
 			            conn.close();
 			      }catch(SQLException se){
 			         se.printStackTrace();
-			      }//end finally try
+			      }
 			   
 		}
 		

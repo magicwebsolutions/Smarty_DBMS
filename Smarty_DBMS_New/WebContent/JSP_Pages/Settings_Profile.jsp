@@ -12,7 +12,7 @@ if(request.getAttribute("returnFlag_EditProfileStatus")!=null && request.getAttr
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Settings</title>
 </head>
 <body>
 <%@ include file = "Header.jsp" %>

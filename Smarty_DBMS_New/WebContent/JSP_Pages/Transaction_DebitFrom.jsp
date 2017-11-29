@@ -7,9 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%@ include file = "Header.jsp" %>
-<div class="page_body">
-	<h1>Debit From Customer Content should Go Here</h1>
-</div>
+
 </body>
 </html>

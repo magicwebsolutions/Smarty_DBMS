@@ -38,25 +38,21 @@
 <div>
   <div class="navbar-fixed-left">
 	  <ul class="nav navbar-nav">
-	   <li onclick="navigation('DASHBOARD');"><center><img class = "sideMenuIcons" src="<%=request.getContextPath()%>/Assets/Images/MenuIcons/Dashboard.png"/></center><div>Dashboard</div></li>
+	   <li><center><img class = "sideMenuIcons" src="<%=request.getContextPath()%>/Assets/Images/MenuIcons/Dashboard.png"/></center><div  onclick="navigation('DASHBOARD');">Dashboard</div></li>
 	   <li><center><img class = "sideMenuIcons" src="<%=request.getContextPath()%>/Assets/Images/MenuIcons/Inventory.png"/></center><div>Stock In/Out</div></li>
-	   <li><center><img class = "sideMenuIcons" src="<%=request.getContextPath()%>/Assets/Images/MenuIcons/Billing.png"/></center><div>Credit/Debit</div></li>
-	   <li onclick="navigation('SETTINGS');"><center><img class = "sideMenuIcons" src="<%=request.getContextPath()%>/Assets/Images/MenuIcons/settings.png"/></center><div>Settings</div></li>
-	   <li><center><img class = "sideMenuIcons" src="<%=request.getContextPath()%>/Assets/Images/MenuIcons/Dashboard.png"/></center><div>Dashboard</div></li>
-	   <li><center><img class = "sideMenuIcons" src="<%=request.getContextPath()%>/Assets/Images/MenuIcons/Inventory.png"/></center><div>Stock In/Out</div></li>
-	   <li><center><img class = "sideMenuIcons" src="<%=request.getContextPath()%>/Assets/Images/MenuIcons/Billing.png"/></center><div>Credit/Debit</div></li>
-	   <li><center><img class = "sideMenuIcons" src="<%=request.getContextPath()%>/Assets/Images/MenuIcons/settings.png"/></center><div>Settings</div></li>
+	   <li><center><img class = "sideMenuIcons" src="<%=request.getContextPath()%>/Assets/Images/MenuIcons/Billing.png"/></center><div onclick="navigation('TRANSACTION');">Credit/Debit</div></li>
+	   <li><center><img class = "sideMenuIcons" src="<%=request.getContextPath()%>/Assets/Images/MenuIcons/settings.png"/></center><div  onclick="navigation('SETTINGS');">Settings</div></li>
+	   <li><center><img class = "sideMenuIcons" src="<%=request.getContextPath()%>/Assets/Images/MenuIcons/Billing.png"/></center><div>Reports</div></li>
 	  </ul>
 </div>
 </div>
 </body>
 
 <script>
-function navigation(screenType){
-	
+function navigation(screenType){	
 	if(screenType == 'SETTINGS') {window.open("<%=request.getContextPath()%>/JSP_Pages/Settings.jsp","_self")};
 	if(screenType == 'DASHBOARD') {window.open("<%=request.getContextPath()%>/JSP_Pages/Dashboard.jsp","_self")};
-
+	if(screenType == 'TRANSACTION') {window.open("<%=request.getContextPath()%>/JSP_Pages/Transaction_CreditTo.jsp","_self")};	
 }
 </script>
 <style>

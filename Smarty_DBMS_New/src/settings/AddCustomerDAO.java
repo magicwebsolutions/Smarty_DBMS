@@ -11,7 +11,6 @@ public class AddCustomerDAO {
 	
 	public String addNewCustomerDtls(HashMap newCustData){
 		Connection conn =null;
-		ResultSet rSet = null;		
 		PreparedStatement psmt1 = null;
 		PreparedStatement psmt2 = null;		
 		String InsertNewCustStatus = "Failed";		

@@ -3,9 +3,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
 String returnFlag_AddNewCustomer= null;
-if(request.getAttribute("returnFlag_AddNewCustomer")!=null && request.getAttribute("returnFlag_AddNewCustomer")!="")
+if(request.getParameter("returnFlag_AddNewCustomer")!=null && request.getParameter("returnFlag_AddNewCustomer")!="")
 {
-	returnFlag_AddNewCustomer = (String)request.getAttribute("returnFlag_AddNewCustomer");
+	returnFlag_AddNewCustomer = (String)request.getParameter("returnFlag_AddNewCustomer");
+	
 }
 
 String returnFlag_DeleteCustomer= null;
@@ -155,9 +156,14 @@ if(request.getAttribute("returnFlag_DeleteCustomer")!=null && request.getAttribu
 <script>
 var gloablContextURL = "<%=request.getContextPath()%>";
 
-var AddCustomer_Status = '<%=returnFlag_AddNewCustomer%>';
+var AddCustomer_Status = "<%=returnFlag_AddNewCustomer%>";
+
 if(AddCustomer_Status == "Success"){
 		alertify.notify('Customer Added Successfully', 'success', 3);
+		if(AddCustomer_Status == "Success"){
+			window.location.href = gloablContextURL+"/JSP_Pages/Settings.jsp"
+			
+		}
 	}
 	else if (AddCustomer_Status == "Failed"){
 		alertify.notify('Error Occured Please Try Again', 'error', 3);
