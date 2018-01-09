@@ -43,6 +43,7 @@
 	   <li><center><img class = "sideMenuIcons" src="<%=request.getContextPath()%>/Assets/Images/MenuIcons/Billing.png"/></center><div onclick="navigation('TRANSACTION');">Credit/Debit</div></li>
 	   <li><center><img class = "sideMenuIcons" src="<%=request.getContextPath()%>/Assets/Images/MenuIcons/settings.png"/></center><div  onclick="navigation('SETTINGS');">Settings</div></li>
 	   <li><center><img class = "sideMenuIcons" src="<%=request.getContextPath()%>/Assets/Images/MenuIcons/Billing.png"/></center><div>Reports</div></li>
+	   <li><center><img class = "sideMenuIcons" src="<%=request.getContextPath()%>/Assets/Images/MenuIcons/upload.png"/></center><div>Backup</div></li>
 	  </ul>
 </div>
 </div>

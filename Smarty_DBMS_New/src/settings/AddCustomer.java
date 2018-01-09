@@ -38,7 +38,7 @@ public class AddCustomer extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String Event = request.getParameter("EVENT");
-		HashMap AddNewCustomerDtlsMap = new HashMap();
+		HashMap<String, String> AddNewCustomerDtlsMap = new HashMap<String, String>();
 		String InsertNewCustStatus ;
 		AddCustomerDAO addCustObj= new AddCustomerDAO();
 		
