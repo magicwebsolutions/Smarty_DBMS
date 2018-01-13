@@ -56,8 +56,6 @@ public class AddCustomer extends HttpServlet {
 			InsertNewCustStatus = addCustObj.addNewCustomerDtls(AddNewCustomerDtlsMap);
 			if(InsertNewCustStatus.equalsIgnoreCase("success")){
 				request.setAttribute("returnFlag_AddNewCustomer", InsertNewCustStatus);
-				System.out.println("sendredirect customer..!");
-				//request.getRequestDispatcher("/Navigator?action=SETTINGS").include(request,response);		
 				response.sendRedirect(request.getContextPath()+"/JSP_Pages/Settings.jsp?returnFlag_AddNewCustomer="+InsertNewCustStatus);
 			}
 			else{

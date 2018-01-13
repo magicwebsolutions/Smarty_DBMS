@@ -116,15 +116,81 @@ public class Transaction extends HttpServlet {
 				UpdateTransactionMap.put("Upd_TransactionBillId_key", Upd_TransactionBillId);
 				
 				String UpdateTransactionStatus = TransactionDAO.updateCreditToTransaction(UpdateTransactionMap);
+				System.out.println("FINALLLLLLLLLLL UPDATE STATUS ---------->"+UpdateTransactionStatus);
 				if(UpdateTransactionStatus.equalsIgnoreCase("Success")){
 					request.setAttribute("returnFlag_UpdateCRTransaction", UpdateTransactionStatus);
-					request.getRequestDispatcher("/JSP_Pages/Transaction_CreditTo.jsp").forward(request,response);			
+					request.getRequestDispatcher("/JSP_Pages/Transaction_CreditTo.jsp").forward(request,response);	
+					//response.sendRedirect(request.getContextPath()+"/JSP_Pages/Transaction_CreditTo.jsp?returnFlag_UpdateCRTransaction="+UpdateTransactionStatus);
 				}
 				else{
 					request.setAttribute("returnFlag_UpdateCRTransaction", UpdateTransactionStatus);
 					request.getRequestDispatcher("/JSP_Pages/Transaction_CreditTo.jsp").forward(request,response);	
 					}
 			}
+			
+			/*For Transaction of DEBIT*/
+			
+			else if(event.equalsIgnoreCase("DEBITFROM_CURRENTDAY")){
+				String DateToPass = request.getParameter("datePassed");
+				response.setContentType("text/plain");
+				PrintWriter out = response.getWriter();
+				transactionCreditBuffer.append(TransactionDAO.ListDebitTransaction(DateToPass));
+				out.println(transactionCreditBuffer.toString());			
+			}
+			
+			else if(event.equalsIgnoreCase("ADDNEWDEBITFROMTRANSACTION")){
+				String TransactionDate = request.getParameter("Trans_date");
+				String TransactionAmount = request.getParameter("Trans_Amount");
+				String TransactionDescription = request.getParameter("Trans_Description");
+				String TransactionCustIID = request.getParameter("getCustomerDropDown");
+				
+				
+				System.out.println("INSERT-->"+TransactionDate+"~~"+TransactionAmount+"~~"+TransactionDescription+"~~"+TransactionCustIID);
+				
+				AddNewTransactionMap.put("TransactionDate_key", TransactionDate);
+				AddNewTransactionMap.put("TransactionAmount_key", TransactionAmount);
+				AddNewTransactionMap.put("TransactionDescription_key", TransactionDescription);
+				AddNewTransactionMap.put("TransactionCustIID_key", TransactionCustIID);
+				String AddTransactionStatus = TransactionDAO.addNewDebitFromTransaction(AddNewTransactionMap);
+				if(AddTransactionStatus.equalsIgnoreCase("success")){
+					request.setAttribute("returnFlag_AddNewDRTransaction", AddTransactionStatus);
+					request.getRequestDispatcher("/JSP_Pages/Transaction_DebitFrom.jsp").forward(request,response);			
+				}
+				else{
+					request.setAttribute("returnFlag_AddNewDRTransaction", AddTransactionStatus);
+					request.getRequestDispatcher("/JSP_Pages/Transaction_DebitFrom.jsp").forward(request,response);	
+					}
+			}
+			
+			else if(event.equalsIgnoreCase("EDITDEBITFROMTRANSACTION")){
+				String Upd_TransactionDate = request.getParameter("Edit_Trans_date");
+				String Upd_TransactionAmount = request.getParameter("Edit_Trans_Amount");
+				String Upd_TransactionDescription = request.getParameter("Edit_Trans_Description");
+				String Upd_TransactionCustIID = request.getParameter("cust_dropdown_id");
+				String Upd_TransactionBillId = request.getParameter("Edit_Trans_BillId");
+				
+				System.out.println("UPDATE-->"+Upd_TransactionDate+"~~"+Upd_TransactionAmount+"~~"+Upd_TransactionDescription+"~~"+Upd_TransactionCustIID+"~~"+Upd_TransactionBillId);
+				
+				
+				UpdateTransactionMap.put("Upd_TransactionDate_key", Upd_TransactionDate);
+				UpdateTransactionMap.put("Upd_TransactionAmount_key", Upd_TransactionAmount);
+				UpdateTransactionMap.put("Upd_TransactionDescription_key", Upd_TransactionDescription);
+				UpdateTransactionMap.put("Upd_TransactionCustIID_key", Upd_TransactionCustIID);
+				UpdateTransactionMap.put("Upd_TransactionBillId_key", Upd_TransactionBillId);
+				
+				String UpdateTransactionStatus = TransactionDAO.updateDebitFromTransaction(UpdateTransactionMap);
+				System.out.println("FINALLLLLLLLLLL UPDATE STATUS ---------->"+UpdateTransactionStatus);
+				if(UpdateTransactionStatus.equalsIgnoreCase("Success")){
+					request.setAttribute("returnFlag_UpdateDRTransaction", UpdateTransactionStatus);
+					request.getRequestDispatcher("/JSP_Pages/Transaction_DebitFrom.jsp").forward(request,response);	
+					//response.sendRedirect(request.getContextPath()+"/JSP_Pages/Transaction_CreditTo.jsp?returnFlag_UpdateCRTransaction="+UpdateTransactionStatus);
+				}
+				else{
+					request.setAttribute("returnFlag_UpdateDRTransaction", UpdateTransactionStatus);
+					request.getRequestDispatcher("/JSP_Pages/Transaction_DebitFrom.jsp").forward(request,response);	
+					}
+			}
+			
 			
 			
 		}catch(Exception e){

@@ -8,7 +8,6 @@ if(request.getParameter("returnFlag_AddNewCustomer")!=null && request.getParamet
 	returnFlag_AddNewCustomer = (String)request.getParameter("returnFlag_AddNewCustomer");
 	
 }
-
 String returnFlag_DeleteCustomer= null;
 if(request.getAttribute("returnFlag_DeleteCustomer")!=null && request.getAttribute("returnFlag_DeleteCustomer")!="")
 {
@@ -157,12 +156,10 @@ if(request.getAttribute("returnFlag_DeleteCustomer")!=null && request.getAttribu
 var gloablContextURL = "<%=request.getContextPath()%>";
 
 var AddCustomer_Status = "<%=returnFlag_AddNewCustomer%>";
-
 if(AddCustomer_Status == "Success"){
 		alertify.notify('Customer Added Successfully', 'success', 3);
 		if(AddCustomer_Status == "Success"){
-			window.location.href = gloablContextURL+"/JSP_Pages/Settings.jsp"
-			
+			window.location.href = gloablContextURL+"/JSP_Pages/Settings.jsp";			
 		}
 	}
 	else if (AddCustomer_Status == "Failed"){

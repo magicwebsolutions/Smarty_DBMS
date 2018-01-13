@@ -8,7 +8,6 @@ if(request.getAttribute("returnFlag_AddNewCRTransaction")!=null && request.getAt
 {
 	returnFlag_AddNewCRTransaction = (String)request.getAttribute("returnFlag_AddNewCRTransaction");
 }
-
 if(request.getAttribute("returnFlag_UpdateCRTransaction")!=null && request.getAttribute("returnFlag_UpdateCRTransaction")!="")
 {
 	returnFlag_UpdateCRTransaction = (String)request.getAttribute("returnFlag_UpdateCRTransaction");
@@ -26,8 +25,8 @@ if(request.getAttribute("returnFlag_UpdateCRTransaction")!=null && request.getAt
 	<nav class="innerNavigation navbar-default">
 	 <div id="navbarCollapse" class="collapse navbar-collapse">
            <ul class="nav navbar-nav">
-               <li class="active"><a href="<%=request.getContextPath()%>/JSP_Pages/Settings.jsp">Credit To Customer</a></li>
-               <li><a href="<%=request.getContextPath()%>/JSP_Pages/Settings_CustomerTypes.jsp")>Debit From Customer</a></li>
+               <li class="active"><a href="<%=request.getContextPath()%>/JSP_Pages/Transaction_CreditTo.jsp">Credit To Customer</a></li>
+               <li><a href="<%=request.getContextPath()%>/JSP_Pages/Transaction_DebitFrom.jsp")>Debit From Customer</a></li>
            </ul>
        </div>
 	</nav>
@@ -146,18 +145,23 @@ var gloablContextURL = "<%=request.getContextPath()%>";
 
 var AddTransaction_Status = '<%=returnFlag_AddNewCRTransaction%>';
 var UpdateTransaction_Status = '<%=returnFlag_UpdateCRTransaction%>';
+
 if(AddTransaction_Status == "Success"){
 		alertify.notify('Transaction Added Successfully', 'success', 3);
+		setTimeout(function(){ window.location.href = gloablContextURL+"/JSP_Pages/Transaction_CreditTo.jsp";}, 500);
 	}
 	else if (AddTransaction_Status == "Failed"){
 		alertify.notify('Error Occured Please Try Again', 'error', 3);
+		setTimeout(function(){ window.location.href = gloablContextURL+"/JSP_Pages/Transaction_CreditTo.jsp";}, 500);
 	}
-
 if(UpdateTransaction_Status == "Success"){
-	alertify.notify('Transaction Updated Successfully', 'success', 3);
+		alertify.notify('Transaction Updated Successfully', 'success', 1);
+		setTimeout(function(){ window.location.href = gloablContextURL+"/JSP_Pages/Transaction_CreditTo.jsp";}, 500);
+		
 }
 else if (UpdateTransaction_Status == "Failed"){
 	alertify.notify('Error Occured Please Try Again', 'error', 3);
+	setTimeout(function(){ window.location.href = gloablContextURL+"/JSP_Pages/Transaction_CreditTo.jsp";}, 500);
 }
 
 </script>

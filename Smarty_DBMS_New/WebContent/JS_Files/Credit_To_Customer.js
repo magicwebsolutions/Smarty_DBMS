@@ -1,6 +1,0 @@
-function Hello() {
-	
-	
-	alert("Hyeeeeeeeeeeeeeeeeeeeee")
-	
-}

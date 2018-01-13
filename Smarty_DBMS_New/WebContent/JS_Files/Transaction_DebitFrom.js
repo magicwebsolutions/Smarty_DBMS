@@ -11,8 +11,8 @@ function CloseModalPopup(popupName){document.getElementById(popupName).style.dis
 /*For Esc key Modal Close*/
 document.addEventListener('keyup', function(e) {
     if (e.keyCode == 27) {
-    	CloseModalPopup('addCustomerTransaction');
-    	CloseModalPopup('editCustomerTransaction');
+    	CloseModalPopup('addCustomerTransaction_DR');
+    	CloseModalPopup('editCustomerTransaction_DR');
     }
 });
 
@@ -38,7 +38,7 @@ function getCurrentDayTransaction(param){
 	else if(param == 'searchDate'){
 		datePassed = document.getElementById("Trans_date").value;
 	}
-	var URL = gloablContextURL+"/Transaction?Event=CREDITTO_CURRENTDAY&datePassed="+datePassed;
+	var URL = gloablContextURL+"/Transaction?Event=DEBITFROM_CURRENTDAY&datePassed="+datePassed;
 	if(window.XMLHttpRequest){
 	requestOBJ = new XMLHttpRequest();
 	}else if(window.ActiveXObject){
@@ -89,7 +89,7 @@ function CurrentDayTransactionResponse(){
 		var rows = "";
 		$('#TransactionCredit').find('tbody').empty();
 		$.each(dataSet, function(){
-		    rows += "<tr class='item'><td>" + this.BillID + "</td><td>" + this.TransDate + "</td><td>" + this.Name + "</td><td>" + this.BillAmt + "</td><td>" + this.BillItem + "</td><td>" + this.BillType + "</td><td>" + this.Description +  "</td><td style='display:none'>"+this.CustId+"</td></tr>";
+		    rows += "<tr class='item'><td>" + this.BillID + "</td><td>" + this.TransDate + "</td><td>" + this.Name + "</td><td>" + this.BillAmt + "</td><td>" + this.BillType + "</td><td>" + this.Description +  "</td><td style='display:none'>"+this.CustId+"</td></tr>";
 		});
 		$( rows ).appendTo( "#TransactionCredit tbody" );
 		
@@ -120,10 +120,9 @@ function CurrentDayTransactionResponse(){
 		        		TransDate  : rowSelected.cells[1].innerHTML,
 		        		Name  : rowSelected.cells[2].innerHTML,
 		        		Amount  : rowSelected.cells[3].innerHTML,
-		        		Item  : rowSelected.cells[4].innerHTML,
-		        		Type  : rowSelected.cells[5].innerHTML,
-		        		Description:rowSelected.cells[6].innerHTML,
-		        		CustId : rowSelected.cells[7].innerHTML
+		        		Type  : rowSelected.cells[4].innerHTML,
+		        		Description:rowSelected.cells[5].innerHTML,
+		        		CustId : rowSelected.cells[6].innerHTML
 		        }
 		    }
 		}
@@ -328,7 +327,6 @@ function setEditTransactionData(){
 	
 	document.getElementById("Edit_Trans_date").value = CTransaction_SelectedRowDataSet.TransDate;
 	document.getElementById("Edit_getCustomerDropDown").value = CTransaction_SelectedRowDataSet.Name;
-	document.getElementById("Edit_getItemsDropDown").value = CTransaction_SelectedRowDataSet.Item;
 	document.getElementById("Edit_Trans_Amount").value = CTransaction_SelectedRowDataSet.Amount;
 	document.getElementById("Edit_Trans_Description").value = CTransaction_SelectedRowDataSet.Description;
 	document.getElementById("Edit_Trans_BillId").value = CTransaction_SelectedRowDataSet.BillID;
