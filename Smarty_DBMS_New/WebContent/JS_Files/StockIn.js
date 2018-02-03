@@ -30,15 +30,16 @@ function onload()
 
 
 function getCurrentDayStockDtls(param){
-	var datePassed 
+	var datePassed ;
+	var ScreenType = 'STOCKIN';
 	if(param == 'today'){
 		datePassed = today
-		document.getElementById("Stock_date").value = today;
+		document.getElementById("StockIn_date").value = today;
 		}
 	else if(param == 'searchDate'){
-		datePassed = document.getElementById("Add_Stock_date").value;
+		datePassed = document.getElementById("StockIn_date").value;
 	}
-	var URL = gloablContextURL+"/Stock?Event=STOCK_CURRENTDAY&datePassed="+datePassed;
+	var URL = gloablContextURL+"/Stock?Event=STOCK_CURRENTDAY&datePassed="+datePassed+"&screentype="+ScreenType;
 	if(window.XMLHttpRequest){
 	requestOBJ = new XMLHttpRequest();
 	}else if(window.ActiveXObject){

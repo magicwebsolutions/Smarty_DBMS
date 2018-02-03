@@ -3,14 +3,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
 String returnFlag_AddNewStock= null;
-String returnFlag_UpdateStock=null;
+String returnFlag_UpdateStockIn=null;
 if(request.getAttribute("returnFlag_AddNewStockIn")!=null && request.getAttribute("returnFlag_AddNewStockIn")!="")
 {
 	returnFlag_AddNewStock = (String)request.getAttribute("returnFlag_AddNewStockIn");
 }
-if(request.getAttribute("returnFlag_UpdateStock")!=null && request.getAttribute("returnFlag_UpdateStock")!="")
+if(request.getAttribute("returnFlag_UpdateStockIn")!=null && request.getAttribute("returnFlag_UpdateStockIn")!="")
 {
-	returnFlag_UpdateStock = (String)request.getAttribute("returnFlag_UpdateStock");
+	returnFlag_UpdateStockIn = (String)request.getAttribute("returnFlag_UpdateStockIn");
 }
 %>
 <html>
@@ -31,14 +31,14 @@ if(request.getAttribute("returnFlag_UpdateStock")!=null && request.getAttribute(
        </div>
 	</nav>
 	<div style="margin-top: 115px;">
-	<button onclick="OpenModalPopup('addStock')" style="width:auto;">Load Stock Details</button> 
-	<button onclick="OpenModalPopup('editStockDtsls');setEditTransactionData();" style="width:auto;">Edit Stock Details</button> 
-	<input oninput="w3.filterHTML('#StockInDetails', '.item', this.value)" placeholder="Search Details" style="margin-left: 836px;">
+	<button onclick="OpenModalPopup('addStock')" class="button" style="vertical-align:middle"><span>Load Stock Details</span></button> 
+	<button onclick="OpenModalPopup('editStockDtsls');setEditTransactionData();" class="button" style="vertical-align:middle"><span>Edit Stock Details</span></button> 
+	<input oninput="w3.filterHTML('#StockInDetails', '.item', this.value)" placeholder="Search Details" style="margin-left: 678px;">
 	</div>
 	
 	<div style="margin-top: 10px;">
 			<span>Date of Transaction</span> 	
-			 <input type="date" id="Stock_date" name="Stock_date">
+			 <input type="date" id="StockIn_date" name="StockIn_date">
 			<button onclick="getCurrentDayStockDtls('searchDate');">Go</button><br>
 	</div>
 	
@@ -140,7 +140,7 @@ if(request.getAttribute("returnFlag_UpdateStock")!=null && request.getAttribute(
 var gloablContextURL = "<%=request.getContextPath()%>";
 
 var AddTransaction_Status = '<%=returnFlag_AddNewStock%>';
-var UpdateTransaction_Status = '<%=returnFlag_UpdateStock%>';
+var UpdateTransaction_Status = '<%=returnFlag_UpdateStockIn%>';
 
 if(AddTransaction_Status == "Success"){
 		alertify.notify('Stock Detail Added Successfully', 'success', 3);

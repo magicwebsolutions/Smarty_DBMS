@@ -42,7 +42,7 @@
 	   <li><center><img class = "sideMenuIcons" src="<%=request.getContextPath()%>/Assets/Images/MenuIcons/Inventory.png"/></center><div onclick="navigation('STOCK');">Stock In/Out</div></li>
 	   <li><center><img class = "sideMenuIcons" src="<%=request.getContextPath()%>/Assets/Images/MenuIcons/Billing.png"/></center><div onclick="navigation('TRANSACTION');">Credit/Debit</div></li>
 	   <li><center><img class = "sideMenuIcons" src="<%=request.getContextPath()%>/Assets/Images/MenuIcons/settings.png"/></center><div  onclick="navigation('SETTINGS');">Settings</div></li>
-	   <li><center><img class = "sideMenuIcons" src="<%=request.getContextPath()%>/Assets/Images/MenuIcons/Billing.png"/></center><div>Reports</div></li>
+	   <li><center><img class = "sideMenuIcons" src="<%=request.getContextPath()%>/Assets/Images/MenuIcons/Billing.png"/></center><div onclick="navigation('REPORT');">Reports</div></li>
 	   <li><center><img class = "sideMenuIcons" src="<%=request.getContextPath()%>/Assets/Images/MenuIcons/upload.png"/></center><div>Backup</div></li>
 	  </ul>
 </div>
@@ -55,6 +55,7 @@ function navigation(screenType){
 	if(screenType == 'DASHBOARD') {window.open("<%=request.getContextPath()%>/JSP_Pages/Dashboard.jsp","_self")};
 	if(screenType == 'TRANSACTION') {window.open("<%=request.getContextPath()%>/JSP_Pages/Transaction_CreditTo.jsp","_self")};	
 	if(screenType == 'STOCK') {window.open("<%=request.getContextPath()%>/JSP_Pages/StockIn.jsp","_self")};
+	if(screenType == 'REPORT') {window.open("<%=request.getContextPath()%>/JSP_Pages/Report.jsp","_self")};
 }
 </script>
 <style>
