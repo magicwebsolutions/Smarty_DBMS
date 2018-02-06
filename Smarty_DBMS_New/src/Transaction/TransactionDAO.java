@@ -212,7 +212,7 @@ public class TransactionDAO {
 				while(rSet2.next()){ItemName = rSet2.getString("Value");}
 				
 				
-				String InsertNewCreditToRecord = "INSERT INTO cust_bill_info(Bill_Date,Cust_ID,Cust_Name,Bill_Type,Bill_Amt,Created_dt,Modified_Dt,Bill_Item_Id,Bill_Item_Name,Description) values (?,?,?,?,?,SYSDATE(),null,?,?,?)";
+				String InsertNewCreditToRecord = "INSERT INTO cust_bill_info(Bill_Date,Cust_ID,Cust_Name,Bill_Type,Bill_Amt,Created_dt,Modified_Dt,Bill_Item_Id,Bill_Item_Name,Description) values (?,?,?,?,?,SYSDATE(),SYSDATE(),?,?,?)";
 				psmt3 = conn.prepareStatement(InsertNewCreditToRecord);
 				psmt3.setString(1, AddTransactionMapReq.get("TransactionDate_key"));
 				psmt3.setString(2, AddTransactionMapReq.get("TransactionCustIID_key"));
@@ -322,6 +322,7 @@ public class TransactionDAO {
 			DiffAmount =  NewAmount - OldAmount;
 			
 			String infoUpdate = "UPDATE cust_bill_info SET Bill_Date = ?,Bill_Amt= ?, Bill_Item_Id = ?, Bill_Item_Name = ?, Description =?, Modified_Dt = SYSDATE() WHERE Bill_Id = ? ";
+System.out.println("HEEheheheeheheheheheeh)))))))))))))))))))))))))))))))))))))0"+infoUpdate);
 			psmt3 = conn.prepareStatement(infoUpdate);
 			psmt3.setString(1,UpdateTransactionMap.get("Upd_TransactionDate_key"));
 			psmt3.setString(2,UpdateTransactionMap.get("Upd_TransactionAmount_key"));

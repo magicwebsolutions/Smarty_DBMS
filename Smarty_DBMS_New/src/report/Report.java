@@ -42,23 +42,33 @@ public class Report extends HttpServlet {
 		System.out.println("INSIDE REPORT JAVA");
 		String Event = "";
 		StringBuffer summaryBuffer = new StringBuffer();
+		StringBuffer CustomerInfoReportBuffer = new StringBuffer();
 		try{
-			Event = request.getParameter("Event");
-			String startDate = request.getParameter("fromdate");
-			String endDate = request.getParameter("enddate");
+			Event = request.getParameter("Event");			
 			if(Event.equalsIgnoreCase("GETSUMMARY")){
+				String startDate = request.getParameter("fromdate");
+				String endDate = request.getParameter("enddate");
 				response.setContentType("text/plain");
 				PrintWriter out = response.getWriter();
 				ReportDAO ReportDAO = new ReportDAO();				
 				summaryBuffer.append(ReportDAO.getIncomeExpenseSummary(startDate,endDate));
-				out.println(summaryBuffer.toString());			
+				out.println(summaryBuffer.toString());	
+				
+			}
+			else if(Event.equalsIgnoreCase("GET_CUSTOMER_REPORT")){
+				String custID = request.getParameter("customerId");
+				response.setContentType("text/plain");
+				PrintWriter out = response.getWriter();
+				ReportDAO ReportDAO = new ReportDAO();				
+				CustomerInfoReportBuffer.append(ReportDAO.getCustomerDetailedReport(custID));
+				out.println(CustomerInfoReportBuffer.toString());	
+				
 			}
 			
 		}catch(Exception e){
 			e.printStackTrace();
 			
 		}
-		doGet(request, response);
 	}
 
 }
