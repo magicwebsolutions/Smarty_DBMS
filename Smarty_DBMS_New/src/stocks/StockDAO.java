@@ -164,7 +164,7 @@ public class StockDAO {
 				while(rSet2.next()){ItemName = rSet2.getString("Value");}
 				
 				
-				String InsertNewCreditToRecord = "INSERT INTO stock_info(Stock_Date,Item_Id,Item_Name,Stock_Type,Stock_Qty,Stock_Amount,Param_1,Created_dt) values (?,?,?,'STOCK_IN',?,?,?,SYSDATE())";
+				String InsertNewCreditToRecord = "INSERT INTO stock_info(Stock_Date,Item_Id,Item_Name,Stock_Type,Stock_Qty,Stock_Amount,Param_1,Created_dt,Modified_Dt) values (?,?,?,'STOCK_IN',?,?,?,SYSDATE(),SYSDATE())";
 				psmt3 = conn.prepareStatement(InsertNewCreditToRecord);
 				psmt3.setString(1, AddnewStockMapReq.get("StockDate_key"));
 				psmt3.setString(2, AddnewStockMapReq.get("StockItemID_key"));
@@ -229,7 +229,7 @@ public class StockDAO {
 				while(rSet2.next()){ItemName = rSet2.getString("Value");}
 				
 				
-				String InsertNewCreditToRecord = "INSERT INTO stock_info(Stock_Date,Item_Id,Item_Name,Stock_Type,Stock_Qty,Stock_Amount,Param_1,Created_dt) values (?,?,?,'STOCK_OUT',?,?,?,SYSDATE())";
+				String InsertNewCreditToRecord = "INSERT INTO stock_info(Stock_Date,Item_Id,Item_Name,Stock_Type,Stock_Qty,Stock_Amount,Param_1,Created_dt,Modified_Dt) values (?,?,?,'STOCK_OUT',?,?,?,SYSDATE(),SYSDATE())";
 				psmt3 = conn.prepareStatement(InsertNewCreditToRecord);
 				psmt3.setString(1, AddNewStocSaleskMapReq.get("StockoutDate_key"));
 				psmt3.setString(2, AddNewStocSaleskMapReq.get("StockoutItemID_key"));

@@ -78,15 +78,22 @@ public class Transaction extends HttpServlet {
 				String TransactionDescription = request.getParameter("Trans_Description");
 				String TransactionCustIID = request.getParameter("getCustomerDropDown");
 				String TransactionItemID = request.getParameter("getItemsDropDown");
+				String TransactionNewCustName = request.getParameter("AddNewCustomer_Name");
+				String TransactionNewCustPhone = request.getParameter("AddNewCustomer_Phone");
+				String TransactionNewCustAddress = request.getParameter("AddNewCustomer_Address");
+				String TransactionNewCustType  = request.getParameter("Cust_type");
 				
-				
-				System.out.println("INSERT-->"+TransactionDate+"~~"+TransactionAmount+"~~"+TransactionDescription+"~~"+TransactionItemID+"~~"+TransactionCustIID);
 				
 				AddNewTransactionMap.put("TransactionDate_key", TransactionDate);
 				AddNewTransactionMap.put("TransactionAmount_key", TransactionAmount);
 				AddNewTransactionMap.put("TransactionDescription_key", TransactionDescription);
 				AddNewTransactionMap.put("TransactionItemID_key", TransactionItemID);
 				AddNewTransactionMap.put("TransactionCustIID_key", TransactionCustIID);
+
+				AddNewTransactionMap.put("TransactionNewCustName_key", TransactionNewCustName);
+				AddNewTransactionMap.put("TransactionNewCustPhone_key", TransactionNewCustPhone);
+				AddNewTransactionMap.put("TransactionNewCustAddress_key", TransactionNewCustAddress);
+				AddNewTransactionMap.put("TransactionNewCustType_key", TransactionNewCustType);
 				String AddTransactionStatus = TransactionDAO.addNewCreditToTransaction(AddNewTransactionMap);
 				if(AddTransactionStatus.equalsIgnoreCase("success")){
 					request.setAttribute("returnFlag_AddNewCRTransaction", AddTransactionStatus);

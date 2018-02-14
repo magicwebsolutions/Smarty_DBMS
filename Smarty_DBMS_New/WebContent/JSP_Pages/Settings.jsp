@@ -16,6 +16,7 @@ if(request.getAttribute("returnFlag_DeleteCustomer")!=null && request.getAttribu
 %>
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/Assets/css/Styling.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <style>
         table.dataTable tbody>tr.selected,
@@ -37,17 +38,17 @@ if(request.getAttribute("returnFlag_DeleteCustomer")!=null && request.getAttribu
 	 <div id="navbarCollapse" class="collapse navbar-collapse">
            <ul class="nav navbar-nav">
                <li class="active"><a href="<%=request.getContextPath()%>/JSP_Pages/Settings.jsp">Customers</a></li>
-               <li><a href="<%=request.getContextPath()%>/JSP_Pages/Settings_CustomerTypes.jsp")>Customer Types</a></li>
+               <!--<li><a href="<%=request.getContextPath()%>/JSP_Pages/Settings_CustomerTypes.jsp")>Customer Types</a></li> -->
                <li><a href="<%=request.getContextPath()%>/JSP_Pages/Settings_ItemTypes.jsp">Items</a></li>
 			<li><a href="<%=request.getContextPath()%>/JSP_Pages/Settings_Profile.jsp">Profile</a></li>
            </ul>
        </div>
 	</nav>
 	<div style="margin-top: 115px;">
-	<button onclick="OpenModalPopup('addCustomer')" style="width:auto;">New</button> 
-	<button onclick="OpenModalPopup('editCustomer');setEditData();" style="width:auto;">Edit</button> 
-	<button onclick="OpenModalPopup('deleteCustomer');showdeleteCustomer();">Delete</button>
-	<input oninput="w3.filterHTML('#customerListTable', '.item', this.value)" placeholder="Search Details" style="margin-left: 953px;">
+	<button onclick="OpenModalPopup('addCustomer')" class="button" style="vertical-align:middle"><span>New</span></button> 
+	<button onclick="OpenModalPopup('editCustomer');setEditData();" class="button" style="vertical-align:middle"><span>Edit</span></button> 
+	<button onclick="OpenModalPopup('deleteCustomer');showdeleteCustomer();" class="button" style="vertical-align:middle"><span>Delete</span></button>
+	<input oninput="w3.filterHTML('#customerListTable', '.item', this.value)" placeholder="Search Details" style="margin-left: 343px;width: 22%;">
 	</div>
     <table class="table table-hover" id="customerListTable" style="margin-top: 30px;">
     <thead>

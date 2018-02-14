@@ -26,12 +26,12 @@
     <div class="navbar-header">
       <a class="navbar-brand" href="#"><img class = "logoStyle" src ="<%=request.getContextPath()%>/Assets/Images/Smarty_DBMS_Logo.png"/></a>
     </div>
-    <form class="navbar-form navbar-left">
+    <!--<form class="navbar-form navbar-left">
       <div class="form-group">
         <input type="text" class="form-control" placeholder="Search">
       </div>
-      <!--<button type="submit" class="btn btn-default">Submit</button>-->
-    </form>
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>-->
   </div>
 </nav>
 

@@ -184,25 +184,66 @@ public class TransactionDAO {
 		ResultSet rSet2 = null;
 		ResultSet rSet3 = null;
 		ResultSet rSet4 = null;
+		ResultSet rSet5 = null;
+		ResultSet rSet6 = null;
 		PreparedStatement psmt1 = null;
 		PreparedStatement psmt2 = null;	
 		PreparedStatement psmt3 = null;	
 		PreparedStatement psmt4 = null;	
 		PreparedStatement psmt5 = null;	
 		PreparedStatement psmt6 = null;	
+		PreparedStatement psmt7 = null;	
 		String InsertNewCreditToTransaction = "Failed";
 		String CustomerName = "";
 		String ItemName = "";
 		int Curr_CR_AMt = 0;
 		int Curr_Outstanding = 0;
+		int insertedRow = 0;	
 ;		try {
 				int insertedRows = 0;
+				int GeneratedCustomerIDkey= 0;
+				int CustomerID = 0;
 				conn = DbConnection.getConnection();
-				String getCustName = "select Cust_Name from customer_info where Cust_ID = ?";			
-				psmt1 = conn.prepareStatement(getCustName);
-				psmt1.setString(1,AddTransactionMapReq.get("TransactionCustIID_key"));
-				rSet1 = psmt1.executeQuery();
-				while(rSet1.next()){CustomerName = rSet1.getString("Cust_Name");}
+				if(AddTransactionMapReq.get("TransactionCustIID_key") != null){
+				CustomerID = Integer.parseInt(AddTransactionMapReq.get("TransactionCustIID_key"));}
+				
+				if(AddTransactionMapReq.get("TransactionCustIID_key") !=null){
+					String getCustName = "select Cust_Name from customer_info where Cust_ID = ?";			
+					psmt1 = conn.prepareStatement(getCustName);
+					psmt1.setString(1,AddTransactionMapReq.get("TransactionCustIID_key"));
+					rSet1 = psmt1.executeQuery();
+					while(rSet1.next()){
+						CustomerName = rSet1.getString("Cust_Name");
+						}
+				}
+				else{
+					 
+					 System.out.println("asdfsdfsdfsdfsdfasdflnklnwoerunwunfsdf");
+					String addNewCustomerQuery = "INSERT INTO customer_info(Cust_Type,Cust_Name,Cust_Phone,Cust_Address,Cust_CR_Amt,Cust_DR_Amt,Cust_Outstanding,Cust_Status,Created_dt,Modified_Dt) values (?,?,?,?,0,0,0,'ACTIVE',SYSDATE(),SYSDATE())";
+					psmt6 = conn.prepareStatement(addNewCustomerQuery);
+					psmt6.setString(1, AddTransactionMapReq.get("TransactionNewCustType_key"));
+					psmt6.setString(2, AddTransactionMapReq.get("TransactionNewCustName_key"));
+					psmt6.setString(3, AddTransactionMapReq.get("TransactionNewCustPhone_key"));
+					psmt6.setString(4, AddTransactionMapReq.get("TransactionNewCustAddress_key"));
+					psmt6.executeUpdate();
+					 ResultSet rs = psmt6.getGeneratedKeys();
+				        if (rs.next()) {
+				        	GeneratedCustomerIDkey = rs.getInt(1);
+				        }
+				        CustomerID = GeneratedCustomerIDkey;
+				        
+				        String getCustName_Gen = "select Cust_Name from customer_info where Cust_ID = ?";			
+						psmt7 = conn.prepareStatement(getCustName_Gen);
+						psmt7.setInt(1,CustomerID);
+						rSet6 = psmt7.executeQuery();
+						while(rSet6.next()){
+							CustomerName = rSet6.getString("Cust_Name");
+							}
+						
+					
+					
+				}
+				
 				
 				
 				String getItemName = "select Value from maintenance_master where Unique_ID = ?";
@@ -215,7 +256,7 @@ public class TransactionDAO {
 				String InsertNewCreditToRecord = "INSERT INTO cust_bill_info(Bill_Date,Cust_ID,Cust_Name,Bill_Type,Bill_Amt,Created_dt,Modified_Dt,Bill_Item_Id,Bill_Item_Name,Description) values (?,?,?,?,?,SYSDATE(),SYSDATE(),?,?,?)";
 				psmt3 = conn.prepareStatement(InsertNewCreditToRecord);
 				psmt3.setString(1, AddTransactionMapReq.get("TransactionDate_key"));
-				psmt3.setString(2, AddTransactionMapReq.get("TransactionCustIID_key"));
+				psmt3.setInt(2, CustomerID);
 				psmt3.setString(3, CustomerName);
 				psmt3.setString(4, "CR");
 				psmt3.setString(5, AddTransactionMapReq.get("TransactionAmount_key"));
@@ -241,7 +282,7 @@ public class TransactionDAO {
 					psmt5 = conn.prepareStatement(MasterCustomerTable);
 					psmt5.setInt(1,updt_CR_Amt);
 					psmt5.setInt(2,updt_Outstanding_Amt);
-					psmt5.setString(3,AddTransactionMapReq.get("TransactionCustIID_key"));
+					psmt5.setInt(3,CustomerID);
 					insertedRows = psmt5.executeUpdate();
 					if(insertedRows > 0){InsertNewCreditToTransaction = "Success";}
 					else{InsertNewCreditToTransaction = "Failed";}

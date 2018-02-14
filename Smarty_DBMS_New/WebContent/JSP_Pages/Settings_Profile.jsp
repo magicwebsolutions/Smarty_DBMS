@@ -22,7 +22,7 @@ if(request.getAttribute("returnFlag_EditProfileStatus")!=null && request.getAttr
 	 <div id="navbarCollapse" class="collapse navbar-collapse">
            <ul class="nav navbar-nav">
                <li><a href="<%=request.getContextPath()%>/JSP_Pages/Settings.jsp">Customers</a></li>
-               <li><a href="<%=request.getContextPath()%>/JSP_Pages/Settings_CustomerTypes.jsp")>Customer Types</a></li>
+               <!--<li><a href="<%=request.getContextPath()%>/JSP_Pages/Settings_CustomerTypes.jsp")>Customer Types</a></li> -->
                <li><a href="<%=request.getContextPath()%>/JSP_Pages/Settings_ItemTypes.jsp">Items</a></li>
 			<li  class="active"><a href="<%=request.getContextPath()%>/JSP_Pages/Settings_Profile.jsp">Profile</a></li>
            </ul>

@@ -31,9 +31,9 @@ if(request.getAttribute("returnFlag_UpdateCRTransaction")!=null && request.getAt
        </div>
 	</nav>
 	<div style="margin-top: 115px;">
-	<button onclick="OpenModalPopup('addCustomerTransaction')" style="width:auto;">New Transaction</button> 
-	<button onclick="OpenModalPopup('editCustomerTransaction');setEditTransactionData();" style="width:auto;">Edit Transaction</button> 
-	<input oninput="w3.filterHTML('#TransactionCredit', '.item', this.value)" placeholder="Search Details" style="margin-left: 836px;">
+	<button onclick="OpenModalPopup('addCustomerTransaction')"  class="button" style="vertical-align:middle"><span>New Transaction</span></button> 
+	<button onclick="OpenModalPopup('editCustomerTransaction');setEditTransactionData();"  class="button" style="vertical-align:middle"><span>Edit Transaction</span></button> 
+	<input oninput="w3.filterHTML('#TransactionCredit', '.item', this.value)" placeholder="Search Details" style="margin-left: 343px;width: 22%;">
 	</div>
 	
 	<div style="margin-top: 10px;">
@@ -64,7 +64,7 @@ if(request.getAttribute("returnFlag_UpdateCRTransaction")!=null && request.getAt
 </div>
 
 <div id="addCustomerTransaction" class="modal">  
-  <form class="modal-content animate" action="/Smarty_DBMS_New/Transaction" method=post ID="ADDNEWCREDITTOTRANSACTION">
+  <form class="modal-content animate" action="/Smarty_DBMS_New/Transaction" method=post ID="ADDNEWCREDITTOTRANSACTION" novalidate>
    <input type="hidden" name="Event" maxlength=50 value="ADDNEWCREDITTOTRANSACTION"></input>
     <div class="imgcontainer">
       <span onclick="CloseModalPopup('addCustomerTransaction')" class="close" title="Close Modal" >&times;</span>
@@ -72,17 +72,50 @@ if(request.getAttribute("returnFlag_UpdateCRTransaction")!=null && request.getAt
 
    <div class="container">
    
-	     <label><b>Transaction Date</b></label><br>
-	     <input type="date" id="Add_Trans_date" name="Trans_date"><br>
-		     
+   <table>
+   	<tr>
+		<td><label><b>Transaction Date</b></label></td>
+		<td><label><b>Select Item</b></label></td>
+   	</tr>
+   	<tr>
+   		<td style="width: 50%;"> <input type="date" id="Add_Trans_date" name="Trans_date"></td>
+		<td><select id="getItemsDropDown" name="getItemsDropDown"  class="soflow"></select> <br></td>
+   	</tr>
+   	</table>
+		
+		<div id="existingcustomeraddiv"> 
 		<label><b>Select Customer</b></label><br>
 		<select id="getCustomerDropDown" name="getCustomerDropDown" class="soflow">		 
 		</select> 
-		<br>
-		<label><b>Select Item</b></label><br>
-		<select id="getItemsDropDown" name="getItemsDropDown"  class="soflow">		 
-		</select> 
-		<br>
+		<img onclick="showAddNewCustomerGrid()" id="addnewIcon" style="height: 28px;width: 30px;" src= "<%=request.getContextPath()%>/Assets/Images/customerAdd.png"/>
+		</div>
+		
+		<div id="newcustomeraddiv">
+		<table>
+			<tr style="width : 50%">
+				<td><label><b>Customer Name</b></label></td>
+				<td><label><b>Customer Type</b></label></td>
+			</tr>
+			<tr>
+				<td><input type="text" placeholder="Enter Customer Name" id= "AddNewCustomer_Name" name="AddNewCustomer_Name" maxlength=100 required></td>
+				<td> <select id="Cust_type" name="Cust_type">
+	      <option value="HOTEL">Hotel</option>
+	      <option value="INDIVIDUAL">Individual</option>
+	    </select>		</td>
+			</tr>
+		</table>
+
+		
+		
+	    
+		<img onclick="showExistingCustomerGrid()" id="backIcon" style="height: 28px; width: 30px;" src= "<%=request.getContextPath()%>/Assets/Images/backButton.png"/><br>
+		<label><b>Customer Phone</b></label><br>
+		<input type="text" placeholder="Enter Customer Phone" id= "AddNewCustomer_Phone" name="AddNewCustomer_Phone" maxlength=100 required><br>
+		<label><b>Customer Address</b></label><br>
+		<input type="text" placeholder="Enter Customer Address" id= "AddNewCustomer_Address" name="AddNewCustomer_Address" maxlength=100 required><br>
+		</div>
+		
+
 
      <label><b>Amount</b></label><br>
      <input type="text" placeholder="Enter Amount" id= "Trans_Amount" name="Trans_Amount" maxlength=10 required><br>

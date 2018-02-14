@@ -19,6 +19,7 @@ document.addEventListener('keyup', function(e) {
 
 function onload()
 {	
+  document.getElementById("newcustomeraddiv").hidden = true;
   var dd = today.getDate();
   var mm = today.getMonth()+1; 
   var yyyy = today.getFullYear();
@@ -334,4 +335,16 @@ function setEditTransactionData(){
 	document.getElementById("Edit_Trans_BillId").value = CTransaction_SelectedRowDataSet.BillID;
 	document.getElementById("cust_dropdown_id").value = CTransaction_SelectedRowDataSet.CustId;
 	
+}
+
+function showAddNewCustomerGrid(){
+	document.getElementById("existingcustomeraddiv").hidden = true;
+	document.getElementById("newcustomeraddiv").hidden = false;
+	document.getElementById("getCustomerDropDown").value = null;
+}
+
+function showExistingCustomerGrid(){
+	getExistingCustomers('NEW');
+	document.getElementById("newcustomeraddiv").hidden = true;
+	document.getElementById("existingcustomeraddiv").hidden = false;	
 }

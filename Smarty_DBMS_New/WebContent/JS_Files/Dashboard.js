@@ -22,7 +22,8 @@ function getDashboardInfo(){
 function DashboardResponse(){
 
 	var singleGrid;
-	var itemarray;
+	var outStandarray;
+	var itemRatioarray;
 if(requestOBJ.readyState==4){
 if(requestOBJ.status==200){
 var responsetext= requestOBJ.responseText;
@@ -30,10 +31,23 @@ responsetext= responsetext.replace("<xml>","");
 debugger;
 if(responsetext.indexOf("~")>0){
 	debugger;
-	var finalResponse = responsetext.substring(0, responsetext.lastIndexOf('#'));
-	itemarray = finalResponse.split("#");
-	for(var i=0; i<itemarray.length;i++){
-		OutstandingData.push([itemarray[i].split('~')[1],parseInt(itemarray[i].split('~')[2])]);		
+	var outstandingServerResData =[];
+	var itemsRatioServerResData =[];
+		if(responsetext.split("|")[0] != null){
+			outstandingServerResData =responsetext.split("|")[0];
+			}
+		if(responsetext.split("|")[1] != null){
+			itemsRatioServerResData = responsetext.split("|")[1];
+		}
+	//var finalResponse = responsetext.substring(0, responsetext.lastIndexOf('#'));
+		outStandarray = outstandingServerResData.split("#");
+		itemRatioarray =itemsRatioServerResData.split("#");
+	for(var i=0; i<outStandarray.length;i++){
+		OutstandingData.push([outStandarray[i].split('~')[1],parseInt(outStandarray[i].split('~')[2])]);		
+	}
+	debugger;
+	for(var j=0; j<itemRatioarray.length;j++){
+		if(itemRatioarray[j].split('~')[0].trim().length > 0 && itemRatioarray[j].split('~')[1].trim().length > 0){item_Sales_Ration.push({"name" : itemRatioarray[j].split('~')[0],"y":parseInt(itemRatioarray[j].split('~')[1])});}
 	}
 	debugger;
 	console.log("OutstandingData--->"+OutstandingData);
@@ -129,13 +143,7 @@ Highcharts.chart('pie-chart', {
     series: [{
         name: 'Sales',
         colorByPoint: true,
-        data: [{
-            name: 'Mutton',
-            y: 1500
-        }, {
-        	name: 'Chicken',
-            y: 1000         
-        }]
+    	data : item_Sales_Ration
     }]
 });
 

@@ -31,8 +31,8 @@ if(request.getAttribute("returnFlag_UpdateDRTransaction")!=null && request.getAt
        </div>
 	</nav>
 	<div style="margin-top: 115px;">
-	<button onclick="OpenModalPopup('addCustomerTransaction_DR')" style="width:auto;">New Transaction</button> 
-	<button onclick="OpenModalPopup('editCustomerTransaction_DR');setEditTransactionData();" style="width:auto;">Edit Transaction</button> 
+	<button onclick="OpenModalPopup('addCustomerTransaction_DR')"  class="button" style="vertical-align:middle"><span>New Transaction</span></button> 
+	<button onclick="OpenModalPopup('editCustomerTransaction_DR');setEditTransactionData();"  class="button" style="vertical-align:middle"><span>Edit Transaction</span></button> 
 	<input oninput="w3.filterHTML('#TransactionCredit', '.item', this.value)" placeholder="Search Details" style="margin-left: 836px;">
 	</div>
 	

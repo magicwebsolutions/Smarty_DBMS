@@ -34,6 +34,7 @@ if(request.getAttribute("returnFlag_DeleteItemType")!=null && request.getAttribu
         }
 </style>
 <title>Settings</title>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/Assets/css/Styling.css">
 </head>
 <body onload="ListItemTypes();">
 <%@ include file = "Header.jsp" %>
@@ -42,7 +43,7 @@ if(request.getAttribute("returnFlag_DeleteItemType")!=null && request.getAttribu
 	 <div id="navbarCollapse" class="collapse navbar-collapse">
            <ul class="nav navbar-nav">
                <li><a href="<%=request.getContextPath()%>/JSP_Pages/Settings.jsp">Customers</a></li>
-               <li><a href="<%=request.getContextPath()%>/JSP_Pages/Settings_CustomerTypes.jsp">Customer Types</a></li>
+               <!--<li><a href="<%=request.getContextPath()%>/JSP_Pages/Settings_CustomerTypes.jsp">Customer Types</a></li>-->
                <li  class="active"><a href="<%=request.getContextPath()%>/JSP_Pages/Settings_ItemTypes.jsp">Items</a></li>
 			<li><a href="<%=request.getContextPath()%>/JSP_Pages/Settings_Profile.jsp">Profile</a></li>
            </ul>
@@ -50,10 +51,10 @@ if(request.getAttribute("returnFlag_DeleteItemType")!=null && request.getAttribu
 	</nav>
 	
 	<div style="margin-top: 115px;">
-	<button onclick="OpenModalPopup('addItemType')" style="width:auto;">New</button> 
-	<button onclick="OpenModalPopup('editItemType');setItemTypeEditData();" style="width:auto;">Edit</button> 
-	<button onclick="OpenModalPopup('deleteItemType');showdeleteItem();">Delete</button>
-	<input oninput="w3.filterHTML('#ItemTypeMain', '.item', this.value)" placeholder="Search Details" style="margin-left: 953px;">
+	<button onclick="OpenModalPopup('addItemType')" class="button" style="vertical-align:middle"><span>New</span></button> 
+	<button onclick="OpenModalPopup('editItemType');setItemTypeEditData();"  class="button" style="vertical-align:middle"><span>Edit</span></button> 
+	<button onclick="OpenModalPopup('deleteItemType');showdeleteItem();" class="button" style="vertical-align:middle"><span>Delete</span></button>
+	<input oninput="w3.filterHTML('#ItemTypeMain', '.item', this.value)" placeholder="Search Details" style="margin-left: 343px;width: 22%;">
 	</div>
 	
 	<table class="table table-hover" id="ItemTypeMain" style="margin-top: 30px;">

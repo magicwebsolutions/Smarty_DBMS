@@ -18,7 +18,7 @@ if(request.getAttribute("returnFlag_EditCustomerType")!=null && request.getAttri
 if(request.getAttribute("returnFlag_DeleteCustomerType")!=null && request.getAttribute("returnFlag_DeleteCustomerType")!="")
 {
 	returnFlag_DeleteCustomerType = (String)request.getAttribute("returnFlag_DeleteCustomerType");
-}
+}	
 %>
 <html>
 <head>
@@ -34,6 +34,7 @@ if(request.getAttribute("returnFlag_DeleteCustomerType")!=null && request.getAtt
         }
 </style>
 <title>Settings</title>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/Assets/css/Styling.css">
 </head>
 <body onload="ListCustomerType();">
 <%@ include file = "Header.jsp" %>
@@ -50,9 +51,9 @@ if(request.getAttribute("returnFlag_DeleteCustomerType")!=null && request.getAtt
 	</nav>
 	
 	<div style="margin-top: 115px;">
-	<button onclick="OpenModalPopup('addCustomerType')" style="width:auto;">New</button> 
-	<button onclick="OpenModalPopup('editCustomerType');setCustTypeEditData();" style="width:auto;">Edit</button> 
-	<button onclick="OpenModalPopup('deleteCustomerType');showdeleteCustomer();">Delete</button>
+	<button onclick="OpenModalPopup('addCustomerType')" class="button" style="vertical-align:middle"><span>New</span></button> 
+	<button onclick="OpenModalPopup('editCustomerType');setCustTypeEditData();"  class="button" style="vertical-align:middle"><span>Edit</span></button> 
+	<button onclick="OpenModalPopup('deleteCustomerType');showdeleteCustomer();" class="button" style="vertical-align:middle"><span>Delete</span></button>
 	<input oninput="w3.filterHTML('#CustomerTypeMain', '.item', this.value)" placeholder="Search Details" style="margin-left: 953px;">
 	</div>
 	

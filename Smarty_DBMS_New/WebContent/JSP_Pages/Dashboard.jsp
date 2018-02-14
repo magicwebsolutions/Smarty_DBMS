@@ -14,13 +14,18 @@
 <%@ include file = "Header.jsp" %>
 
 <div class="Maincontainer" style="background-color: red;margin-top: 51px;">
-	<div class="row" style="padding: 10px;">
-		<div class="col-md-12"> 
+	<div class="row" style="padding: 17px 12px 16px 7px">
+	<div class="col-md-4"> 
+			<div id="pie-chart" style="height: 350px;"></div> 
+		</div>
+		
+		<div class="col-md-8"> 
 			<div id="bar-chart" style="height: 350px;"></div> 
 		</div>
+		
 	 </div>
 	 
-	 <div class="row" style="padding: 10px;">
+	 <!-- <div class="row" style="padding: 10px;">
 		<div class="col-md-5"> 
 			<div id="pie-chart" style="height: 300px;"></div> 
 		</div>
@@ -28,7 +33,7 @@
 		<div class="col-md-7"> 
 			<div id="line-chart" style="height: 300px;"></div> 
 		</div>		
-	 </div>
+	 </div>-->
 </div>
 </body>
 
