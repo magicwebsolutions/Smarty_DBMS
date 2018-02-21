@@ -5,6 +5,9 @@ var SelectedRowDataSet =[];
 
 function ListCustomers()
 {	
+document.getElementById("setting_edit_btn").disabled = true;
+document.getElementById("setting_delete_btn").disabled = true;
+	
 var URL = gloablContextURL+"/ListCustomer?Event=LISTCUSTOMER";
 if(window.XMLHttpRequest){
 requestOBJ = new XMLHttpRequest();
@@ -72,6 +75,8 @@ for (var i = 0; i < cells.length; i++) {
     // do something on onclick event for cell
     cell.onclick = function () {
         // Get the row id where the cell exists
+    	document.getElementById("setting_edit_btn").disabled = false;
+    	document.getElementById("setting_delete_btn").disabled = false;
         var rowId = this.parentNode.rowIndex;
         console.log("RowID--->"+rowId);
         var rowsNotSelected = table.getElementsByTagName('tr');

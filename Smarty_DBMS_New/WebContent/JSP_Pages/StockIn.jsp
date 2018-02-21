@@ -64,11 +64,15 @@ if(request.getAttribute("returnFlag_UpdateStockIn")!=null && request.getAttribut
 </div>
 
 <div id="addStock" class="modal">  
+ 
   <form class="modal-content animate" action="/Smarty_DBMS_New/Stock" method=post ID="ADDNEWSTOCKDTLS">
+  <div>
+  		<h2 style="margin-left: 15px;">Add Stock In Details</h2>
+      	<span onclick="CloseModalPopup('addStock')" class="close" title="Close Modal" >&times;</span>
+  </div>
+  
    <input type="hidden" name="Event" maxlength=50 value="ADDNEWSTOCKDTLS"></input>
-    <div class="imgcontainer">
-      <span onclick="CloseModalPopup('addStock')" class="close" title="Close Modal" >&times;</span>
-    </div>
+    
 
    <div class="container">
    
@@ -102,14 +106,14 @@ if(request.getAttribute("returnFlag_UpdateStockIn")!=null && request.getAttribut
 <div id="editStockDtsls" class="modal">  
   <form class="modal-content animate" action="/Smarty_DBMS_New/Stock" method=post ID="UPDATESTOCKDTLS">
    <input type="hidden" name="Event" maxlength=50 value="UPDATESTOCKDTLS"></input>
-    <div class="imgcontainer">
-      <span onclick="CloseModalPopup('editStockDtsls')" class="close" title="Close Modal" >&times;</span>
-    </div>
+   <div>
+  		<h2 style="margin-left: 15px;">Edit Stock In Details</h2>
+      	<span onclick="CloseModalPopup('editStockDtsls')" class="close" title="Close Modal" >&times;</span>
+  </div>
    <div class="container">   
-   		<input type="text" id= "Edit_Trans_stockid" name="Edit_Trans_stockid" style="display: none;"><br>
+   		<input type="text" id= "Edit_Trans_stockid" name="Edit_Trans_stockid" style="display: none;">
 	     <label><b>Transaction Date</b></label><br>
 	     <input type="date" id="Edit_Stock_date" name="Edit_Stock_date"><br>	
-		<br>
 		<label><b>Select Item</b></label><br>
 		<select id="Edit_getItemsDropDown" name="Edit_getItemsDropDown"  class="soflow">		 
 		</select> 

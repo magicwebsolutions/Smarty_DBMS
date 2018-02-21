@@ -383,7 +383,7 @@ span.psw {
 /* Modal Content/Box */
 .modal-content {
     background-color: #fefefe;
-    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    margin: 0 auto; /* 5% from the top, 15% from the bottom and centered */
     border: 1px solid #888;
     width: 50%; /* Could be more or less, depending on screen size */
 }
@@ -391,10 +391,10 @@ span.psw {
 /* The Close Button (x) */
 .close {
     position: absolute;
-    right: 25px;
-    top: 0;
+    right: 17px;
+    top: 10px;
     color: #000;
-    font-size: 35px;
+    font-size: 50px;
     font-weight: bold;
 }
 
@@ -492,7 +492,6 @@ font-size: 15px;
 padding: 10px 10px 10px 10px;
 width: 200px;
 transition: all 0.15s;
-cursor: pointer;
 margin: 5px;
 height: 40px;
 }
@@ -523,10 +522,7 @@ height: 40px;
   right: 0;
 }
 
-
-
-
 .disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
+    opacity: 0.65;
+    cursor: !not-allowed;
 }

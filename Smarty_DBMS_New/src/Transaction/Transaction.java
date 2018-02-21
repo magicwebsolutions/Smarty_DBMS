@@ -59,12 +59,10 @@ public class Transaction extends HttpServlet {
 			}
 			
 			else if(event.equalsIgnoreCase("GET_CUSTOMERS")){
-				System.out.println("Helwoooooooooooooooooooooooooooooooooooooo");
 				response.setContentType("text/plain");
 				PrintWriter out = response.getWriter();
 				getCustomersBuffer.append(TransactionDAO.getCustomers());
 				out.println(getCustomersBuffer.toString());
-				System.out.println("ddddddddddddddddddd-->"+getCustomersBuffer.toString());
 			}
 			else if(event.equalsIgnoreCase("GET_ITEMS")){
 				response.setContentType("text/plain");
@@ -95,6 +93,7 @@ public class Transaction extends HttpServlet {
 				AddNewTransactionMap.put("TransactionNewCustAddress_key", TransactionNewCustAddress);
 				AddNewTransactionMap.put("TransactionNewCustType_key", TransactionNewCustType);
 				String AddTransactionStatus = TransactionDAO.addNewCreditToTransaction(AddNewTransactionMap);
+				System.out.println("HCueeeeeeeeeeeeee---->"+AddTransactionStatus);
 				if(AddTransactionStatus.equalsIgnoreCase("success")){
 					request.setAttribute("returnFlag_AddNewCRTransaction", AddTransactionStatus);
 					request.getRequestDispatcher("/JSP_Pages/Transaction_CreditTo.jsp").forward(request,response);			
@@ -112,7 +111,6 @@ public class Transaction extends HttpServlet {
 				String Upd_TransactionItemID = request.getParameter("Edit_getItemsDropDown"); 
 				String Upd_TransactionBillId = request.getParameter("Edit_Trans_BillId");
 				
-				System.out.println("UPDATE-->"+Upd_TransactionDate+"~~"+Upd_TransactionAmount+"~~"+Upd_TransactionDescription+"~~"+Upd_TransactionCustIID+"~~"+Upd_TransactionItemID+"~~"+Upd_TransactionBillId);
 				
 				
 				UpdateTransactionMap.put("Upd_TransactionDate_key", Upd_TransactionDate);
@@ -123,7 +121,6 @@ public class Transaction extends HttpServlet {
 				UpdateTransactionMap.put("Upd_TransactionBillId_key", Upd_TransactionBillId);
 				
 				String UpdateTransactionStatus = TransactionDAO.updateCreditToTransaction(UpdateTransactionMap);
-				System.out.println("FINALLLLLLLLLLL UPDATE STATUS ---------->"+UpdateTransactionStatus);
 				if(UpdateTransactionStatus.equalsIgnoreCase("Success")){
 					request.setAttribute("returnFlag_UpdateCRTransaction", UpdateTransactionStatus);
 					request.getRequestDispatcher("/JSP_Pages/Transaction_CreditTo.jsp").forward(request,response);	
@@ -152,7 +149,6 @@ public class Transaction extends HttpServlet {
 				String TransactionCustIID = request.getParameter("getCustomerDropDown");
 				
 				
-				System.out.println("INSERT-->"+TransactionDate+"~~"+TransactionAmount+"~~"+TransactionDescription+"~~"+TransactionCustIID);
 				
 				AddNewTransactionMap.put("TransactionDate_key", TransactionDate);
 				AddNewTransactionMap.put("TransactionAmount_key", TransactionAmount);
@@ -176,7 +172,6 @@ public class Transaction extends HttpServlet {
 				String Upd_TransactionCustIID = request.getParameter("cust_dropdown_id");
 				String Upd_TransactionBillId = request.getParameter("Edit_Trans_BillId");
 				
-				System.out.println("UPDATE-->"+Upd_TransactionDate+"~~"+Upd_TransactionAmount+"~~"+Upd_TransactionDescription+"~~"+Upd_TransactionCustIID+"~~"+Upd_TransactionBillId);
 				
 				
 				UpdateTransactionMap.put("Upd_TransactionDate_key", Upd_TransactionDate);
@@ -186,7 +181,6 @@ public class Transaction extends HttpServlet {
 				UpdateTransactionMap.put("Upd_TransactionBillId_key", Upd_TransactionBillId);
 				
 				String UpdateTransactionStatus = TransactionDAO.updateDebitFromTransaction(UpdateTransactionMap);
-				System.out.println("FINALLLLLLLLLLL UPDATE STATUS ---------->"+UpdateTransactionStatus);
 				if(UpdateTransactionStatus.equalsIgnoreCase("Success")){
 					request.setAttribute("returnFlag_UpdateDRTransaction", UpdateTransactionStatus);
 					request.getRequestDispatcher("/JSP_Pages/Transaction_DebitFrom.jsp").forward(request,response);	

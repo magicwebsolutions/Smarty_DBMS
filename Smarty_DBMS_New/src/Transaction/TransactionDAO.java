@@ -13,8 +13,6 @@ import dbConnection.DbConnection;
 public class TransactionDAO {
 
 	public String ListTransaction(String GivenDate) {
-		System.out.println("INTO DAO CLASSS");
-		System.out.println("GivenDate-------->"+GivenDate);
 		
 		StringBuffer Unit_Buffer = null;
 		Connection conn = null;
@@ -22,7 +20,6 @@ public class TransactionDAO {
 		java.util.Date dt = new java.util.Date();
 		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
 		String currentDate = sdf.format(dt);
-		System.out.println("currentDate--->"+currentDate);
 		String query = "select Bill_id,Cust_ID,Cust_Name,Bill_Amt,Bill_Type,Description,Bill_date,Bill_Item_Name from cust_bill_info where Bill_Type='CR' and Bill_Date = ?";
 		ResultSet rSet = null;
 		int i = 0;
@@ -32,7 +29,6 @@ public class TransactionDAO {
 			conn = DbConnection.getConnection();
 			psmt = conn.prepareStatement(query);
 			psmt.setString(1, GivenDate);
-			System.out.println("Query for for TransactionCredit-ssss-->" + psmt);
 			rSet = psmt.executeQuery();
 			while (rSet.next()) {
 				Unit_Buffer.append(rSet.getString("Bill_id"));
@@ -53,7 +49,6 @@ public class TransactionDAO {
 				Unit_Buffer.append("#");
 			}
 		} catch (Exception e) {
-			System.out.println("Something went wrong during Unit........");
 			e.printStackTrace();
 
 		} finally {
@@ -74,13 +69,11 @@ public class TransactionDAO {
 			}
 
 		}
-		System.out.println("sdlkfjsdlkfjklsdjfkldsjklfjdsklj---->" + Unit_Buffer.toString());
 		return Unit_Buffer.toString();
 	}
 	
 	public String getCustomers(){
 
-		System.out.println("INTO DAO CLASSS::getCustomers()");
 		StringBuffer Unit_Buffer = null;
 		Connection conn = null;
 
@@ -92,7 +85,6 @@ public class TransactionDAO {
 			Unit_Buffer = new StringBuffer();
 			conn = DbConnection.getConnection();
 			psmt = conn.prepareStatement(query);
-			System.out.println("Query for for TransactionCredit-ssss-->" + psmt);
 			rSet = psmt.executeQuery();
 			while (rSet.next()) {
 				Unit_Buffer.append(rSet.getString("Cust_ID"));
@@ -100,9 +92,7 @@ public class TransactionDAO {
 				Unit_Buffer.append(rSet.getString("Cust_Name"));
 				Unit_Buffer.append("#");
 			}
-			System.out.println("Unit_Buffer---getCustomers()---->"+Unit_Buffer);
 		} catch (Exception e) {
-			System.out.println("Something went wrong during Unit::getCustomers()");
 			e.printStackTrace();
 
 		} finally {
@@ -129,7 +119,6 @@ public class TransactionDAO {
 	
 	public String getItems(){
 
-		System.out.println("INTO DAO CLASSS :: getItems()");
 		StringBuffer Unit_Buffer = null;
 		Connection conn = null;
 
@@ -141,7 +130,6 @@ public class TransactionDAO {
 			Unit_Buffer = new StringBuffer();
 			conn = DbConnection.getConnection();
 			psmt = conn.prepareStatement(query);
-			System.out.println("Query for for TransactionCredit-ssss-->" + psmt);
 			rSet = psmt.executeQuery();
 			while (rSet.next()) {
 				Unit_Buffer.append(rSet.getString("Unique_ID"));
@@ -149,9 +137,7 @@ public class TransactionDAO {
 				Unit_Buffer.append(rSet.getString("Value"));
 				Unit_Buffer.append("#");
 			}
-			System.out.println("Unit_Buffer---getItems()---->"+Unit_Buffer);
 		} catch (Exception e) {
-			System.out.println("Something went wrong during Unit  :: getItems()");
 			e.printStackTrace();
 
 		} finally {
@@ -178,7 +164,6 @@ public class TransactionDAO {
 	
 	public String addNewCreditToTransaction(HashMap<String,String> AddTransactionMapReq){
 
-		System.out.println("INTO DAO CLASSS::addNewTransaction()");
 		Connection conn =null;
 		ResultSet rSet1 = null;
 		ResultSet rSet2 = null;
@@ -218,7 +203,6 @@ public class TransactionDAO {
 				}
 				else{
 					 
-					 System.out.println("asdfsdfsdfsdfsdfasdflnklnwoerunwunfsdf");
 					String addNewCustomerQuery = "INSERT INTO customer_info(Cust_Type,Cust_Name,Cust_Phone,Cust_Address,Cust_CR_Amt,Cust_DR_Amt,Cust_Outstanding,Cust_Status,Created_dt,Modified_Dt) values (?,?,?,?,0,0,0,'ACTIVE',SYSDATE(),SYSDATE())";
 					psmt6 = conn.prepareStatement(addNewCustomerQuery);
 					psmt6.setString(1, AddTransactionMapReq.get("TransactionNewCustType_key"));
@@ -292,7 +276,6 @@ public class TransactionDAO {
 					InsertNewCreditToTransaction = "Failed";
 				}	
 		} catch (Exception e) {
-			System.out.println("Something went wrong during Unit........");
 			e.printStackTrace();
 
 		} finally {
@@ -316,7 +299,6 @@ public class TransactionDAO {
 	
 	
 	public String updateCreditToTransaction(HashMap<String,String> UpdateTransactionMap){
-		System.out.println("INTO DAO CLASSS::updateCreditToTransaction()");
 		Connection conn =null;
 		ResultSet rSet1 = null;
 		ResultSet rSet2 = null;
@@ -363,7 +345,6 @@ public class TransactionDAO {
 			DiffAmount =  NewAmount - OldAmount;
 			
 			String infoUpdate = "UPDATE cust_bill_info SET Bill_Date = ?,Bill_Amt= ?, Bill_Item_Id = ?, Bill_Item_Name = ?, Description =?, Modified_Dt = SYSDATE() WHERE Bill_Id = ? ";
-System.out.println("HEEheheheeheheheheheeh)))))))))))))))))))))))))))))))))))))0"+infoUpdate);
 			psmt3 = conn.prepareStatement(infoUpdate);
 			psmt3.setString(1,UpdateTransactionMap.get("Upd_TransactionDate_key"));
 			psmt3.setString(2,UpdateTransactionMap.get("Upd_TransactionAmount_key"));
@@ -373,12 +354,9 @@ System.out.println("HEEheheheeheheheheheeh)))))))))))))))))))))))))))))))))))))0
 			psmt3.setString(6,UpdateTransactionMap.get("Upd_TransactionBillId_key"));
 			transactioncount = psmt3.executeUpdate();
 			
-			System.out.println("11111111111111111111111111111111-transactioncount->"+transactioncount);
 			if(transactioncount > 0){
 				String curr_CR_Amt = "SELECT Cust_CR_Amt,Cust_Outstanding from customer_info where Cust_ID = ?";
 				psmt4 = conn.prepareStatement(curr_CR_Amt);
-				System.out.println("Upd_TransactionCustIID_key-Upd_TransactionCustIID_key->"+UpdateTransactionMap.get("Upd_TransactionCustIID_key"));
-				System.out.println("curr_CR_Amt-curr_CR_Amt->"+curr_CR_Amt);
 				psmt4.setString(1,UpdateTransactionMap.get("Upd_TransactionCustIID_key"));
 				rSet4 = psmt4.executeQuery();
 				while(rSet4.next()){
@@ -386,15 +364,10 @@ System.out.println("HEEheheheeheheheheheeh)))))))))))))))))))))))))))))))))))))0
 					curr_Outstanding_Amt = rSet4.getInt("Cust_Outstanding");	
 				}
 				
-				System.out.println("*********************************************************-curr_credit_Amt->"+curr_credit_Amt);
-				System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^-curr_Outstanding_Amt->"+curr_Outstanding_Amt);
 				
 				double updt_CR_Amt = curr_credit_Amt + DiffAmount;
 				double updt_Outstanding_Amt = curr_Outstanding_Amt + DiffAmount;
 				
-				System.out.println("2222222222222222222222222222222222222222222222222222-updt_CR_Amt->"+updt_CR_Amt);
-				System.out.println("3333333333333333333333333333333333333333333333333333-updt_Outstanding_Amt->"+updt_Outstanding_Amt);
-				System.out.println("4444444444444444444444444444444444444444-DiffAmount->"+DiffAmount);
 				
 				String MasterUpdate = "UPDATE customer_info SET Cust_CR_Amt = ?,Cust_Outstanding = ?,Modified_Dt =SYSDATE()	where Cust_ID = ?";
 				psmt5 = conn.prepareStatement(MasterUpdate);
@@ -402,9 +375,7 @@ System.out.println("HEEheheheeheheheheheeh)))))))))))))))))))))))))))))))))))))0
 				psmt5.setDouble(2, updt_Outstanding_Amt);
 				psmt5.setString(3, UpdateTransactionMap.get("Upd_TransactionCustIID_key"));
 				transactioncount = psmt5.executeUpdate();
-				System.out.println("5555555555555555555555555555555555555-transactioncount->"+transactioncount);
 				if(transactioncount > 0){
-					System.out.println("666666666666666666666666666666666666666666666666666-->");
 					InsertNewCreditToTransaction = "Success";
 				}
 				else
@@ -413,7 +384,6 @@ System.out.println("HEEheheheeheheheheheeh)))))))))))))))))))))))))))))))))))))0
 				}
 			}
 		} catch (Exception e) {
-			System.out.println("Something went wrong during Unit........");
 			e.printStackTrace();
 
 		} finally {
@@ -442,8 +412,6 @@ System.out.println("HEEheheheeheheheheheeh)))))))))))))))))))))))))))))))))))))0
 	/*FOR DEBIT FROM */
 	
 	public String ListDebitTransaction(String GivenDate) {
-		System.out.println("INTO DAO CLASSS");
-		System.out.println("GivenDate-------->"+GivenDate);
 		
 		StringBuffer Unit_Buffer = null;
 		Connection conn = null;
@@ -451,7 +419,6 @@ System.out.println("HEEheheheeheheheheheeh)))))))))))))))))))))))))))))))))))))0
 		java.util.Date dt = new java.util.Date();
 		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
 		String currentDate = sdf.format(dt);
-		System.out.println("currentDate--->"+currentDate);
 		String query = "select Bill_id,Cust_ID,Cust_Name,Bill_Amt,Bill_Type,Description,Bill_date,Bill_Item_Name from cust_bill_info where Bill_Type='DR' and Bill_Date = ?";
 		ResultSet rSet = null;
 		int i = 0;
@@ -461,7 +428,6 @@ System.out.println("HEEheheheeheheheheheeh)))))))))))))))))))))))))))))))))))))0
 			conn = DbConnection.getConnection();
 			psmt = conn.prepareStatement(query);
 			psmt.setString(1, GivenDate);
-			System.out.println("Query for for TransactionCredit-ssss-->" + psmt);
 			rSet = psmt.executeQuery();
 			while (rSet.next()) {
 				Unit_Buffer.append(rSet.getString("Bill_id"));
@@ -482,7 +448,6 @@ System.out.println("HEEheheheeheheheheheeh)))))))))))))))))))))))))))))))))))))0
 				Unit_Buffer.append("#");
 			}
 		} catch (Exception e) {
-			System.out.println("Something went wrong during Unit........");
 			e.printStackTrace();
 
 		} finally {
@@ -503,7 +468,6 @@ System.out.println("HEEheheheeheheheheheeh)))))))))))))))))))))))))))))))))))))0
 			}
 
 		}
-		System.out.println("sdlkfjsdlkfjklsdjfkldsjklfjdsklj---->" + Unit_Buffer.toString());
 		return Unit_Buffer.toString();
 	}
 	
@@ -511,7 +475,6 @@ System.out.println("HEEheheheeheheheheheeh)))))))))))))))))))))))))))))))))))))0
 	
 	public String addNewDebitFromTransaction(HashMap<String,String> AddTransactionMapReq){
 
-		System.out.println("INTO DAO CLASSS::addNewDebitFromTransaction()");
 		Connection conn =null;
 		ResultSet rSet1 = null;
 		ResultSet rSet2 = null;
@@ -584,7 +547,6 @@ System.out.println("HEEheheheeheheheheheeh)))))))))))))))))))))))))))))))))))))0
 					InsertNewDebitFromTransaction = "Failed";
 				}	
 		} catch (Exception e) {
-			System.out.println("Something went wrong during Unit........");
 			e.printStackTrace();
 
 		} finally {
@@ -608,7 +570,6 @@ System.out.println("HEEheheheeheheheheheeh)))))))))))))))))))))))))))))))))))))0
 	
 	
 	public String updateDebitFromTransaction(HashMap<String,String> UpdateTransactionMap){
-		System.out.println("INTO DAO CLASSS::updateDebitFromTransaction()");
 		Connection conn =null;
 		ResultSet rSet1 = null;
 		ResultSet rSet2 = null;
@@ -663,7 +624,6 @@ System.out.println("HEEheheheeheheheheheeh)))))))))))))))))))))))))))))))))))))0
 			psmt3.setString(6,UpdateTransactionMap.get("Upd_TransactionBillId_key"));
 			transactioncount = psmt3.executeUpdate();
 			
-			System.out.println("11111111111111111111111111111111-transactioncount->"+transactioncount);
 			if(transactioncount > 0){
 				String curr_DR_Amt = "SELECT Cust_DR_Amt,Cust_Outstanding from customer_info where Cust_ID = ?";
 				psmt4 = conn.prepareStatement(curr_DR_Amt);
@@ -683,9 +643,7 @@ System.out.println("HEEheheheeheheheheheeh)))))))))))))))))))))))))))))))))))))0
 				psmt5.setDouble(2, updt_Outstanding_Amt);
 				psmt5.setString(3, UpdateTransactionMap.get("Upd_TransactionCustIID_key"));
 				transactioncount = psmt5.executeUpdate();
-				System.out.println("5555555555555555555555555555555555555-transactioncount->"+transactioncount);
 				if(transactioncount > 0){
-					System.out.println("666666666666666666666666666666666666666666666666666-->");
 					InsertNewDebitTransaction = "Success";
 				}
 				else
@@ -694,7 +652,6 @@ System.out.println("HEEheheheeheheheheheeh)))))))))))))))))))))))))))))))))))))0
 				}
 			}
 		} catch (Exception e) {
-			System.out.println("Something went wrong during Unit........");
 			e.printStackTrace();
 
 		} finally {

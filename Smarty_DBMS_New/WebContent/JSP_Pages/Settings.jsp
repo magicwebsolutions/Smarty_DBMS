@@ -45,9 +45,9 @@ if(request.getAttribute("returnFlag_DeleteCustomer")!=null && request.getAttribu
        </div>
 	</nav>
 	<div style="margin-top: 115px;">
-	<button onclick="OpenModalPopup('addCustomer')" class="button" style="vertical-align:middle"><span>New</span></button> 
-	<button onclick="OpenModalPopup('editCustomer');setEditData();" class="button" style="vertical-align:middle"><span>Edit</span></button> 
-	<button onclick="OpenModalPopup('deleteCustomer');showdeleteCustomer();" class="button" style="vertical-align:middle"><span>Delete</span></button>
+	<button id="setting_new_btn" onclick="OpenModalPopup('addCustomer')" class="button" style="vertical-align:middle"><span>New</span></button> 
+	<button id="setting_edit_btn" onclick="OpenModalPopup('editCustomer');setEditData();" class="button disabled" style="vertical-align:middle"><span>Edit</span></button> 
+	<button id="setting_delete_btn" onclick="OpenModalPopup('deleteCustomer');showdeleteCustomer();" class="button" style="vertical-align:middle"><span>Delete</span></button>
 	<input oninput="w3.filterHTML('#customerListTable', '.item', this.value)" placeholder="Search Details" style="margin-left: 343px;width: 22%;">
 	</div>
     <table class="table table-hover" id="customerListTable" style="margin-top: 30px;">

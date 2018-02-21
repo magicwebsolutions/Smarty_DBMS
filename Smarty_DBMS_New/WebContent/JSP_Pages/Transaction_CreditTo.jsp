@@ -1,5 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
 String returnFlag_AddNewCRTransaction= null;
@@ -16,7 +14,7 @@ if(request.getAttribute("returnFlag_UpdateCRTransaction")!=null && request.getAt
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/Assets/css/Styling.css">
+<link rel="stylesheet" type="text/css" href="/Smarty_DBMS_New/Assets/css/Styling.css">
 <title>Transaction</title>
 </head>
 <body onload="onload();getCurrentDayTransaction('today');">
@@ -25,8 +23,8 @@ if(request.getAttribute("returnFlag_UpdateCRTransaction")!=null && request.getAt
 	<nav class="innerNavigation navbar-default">
 	 <div id="navbarCollapse" class="collapse navbar-collapse">
            <ul class="nav navbar-nav">
-               <li class="active"><a href="<%=request.getContextPath()%>/JSP_Pages/Transaction_CreditTo.jsp">Credit To Customer</a></li>
-               <li><a href="<%=request.getContextPath()%>/JSP_Pages/Transaction_DebitFrom.jsp")>Debit From Customer</a></li>
+               <li class="active"><a href="/Smarty_DBMS_New/JSP_Pages/Transaction_CreditTo.jsp">Credit To Customer</a></li>
+               <li><a href="/Smarty_DBMS_New/JSP_Pages/Transaction_DebitFrom.jsp")>Debit From Customer</a></li>
            </ul>
        </div>
 	</nav>
@@ -65,11 +63,13 @@ if(request.getAttribute("returnFlag_UpdateCRTransaction")!=null && request.getAt
 
 <div id="addCustomerTransaction" class="modal">  
   <form class="modal-content animate" action="/Smarty_DBMS_New/Transaction" method=post ID="ADDNEWCREDITTOTRANSACTION" novalidate>
+  
+  <div>
+  		<h2 style="margin-left: 15px;">Add Transaction</h2>
+      	<span onclick="CloseModalPopup('addCustomerTransaction')" class="close" title="Close Modal" >&times;</span>
+  </div>
+  
    <input type="hidden" name="Event" maxlength=50 value="ADDNEWCREDITTOTRANSACTION"></input>
-    <div class="imgcontainer">
-      <span onclick="CloseModalPopup('addCustomerTransaction')" class="close" title="Close Modal" >&times;</span>
-    </div>
-
    <div class="container">
    
    <table>
@@ -87,41 +87,38 @@ if(request.getAttribute("returnFlag_UpdateCRTransaction")!=null && request.getAt
 		<label><b>Select Customer</b></label><br>
 		<select id="getCustomerDropDown" name="getCustomerDropDown" class="soflow">		 
 		</select> 
-		<img onclick="showAddNewCustomerGrid()" id="addnewIcon" style="height: 28px;width: 30px;" src= "<%=request.getContextPath()%>/Assets/Images/customerAdd.png"/>
+		<img onclick="showAddNewCustomerGrid()" id="addnewIcon" style="height: 28px;width: 30px;" src= "/Smarty_DBMS_New/Assets/Images/customerAdd.png"/>
 		</div>
 		
 		<div id="newcustomeraddiv">
-		<table>
-			<tr style="width : 50%">
-				<td><label><b>Customer Name</b></label></td>
-				<td><label><b>Customer Type</b></label></td>
-			</tr>
-			<tr>
-				<td><input type="text" placeholder="Enter Customer Name" id= "AddNewCustomer_Name" name="AddNewCustomer_Name" maxlength=100 required></td>
-				<td> <select id="Cust_type" name="Cust_type">
+		<div>
+		<label style="width: 33%;"><b>Customer Name</b></label>
+		<label><b>Customer Type</b></label><br>
+
+		<input type="text" placeholder="Enter Customer Name" id= "AddNewCustomer_Name" name="AddNewCustomer_Name" maxlength=100 required style="width: 30%;">
+		<select id="Cust_type" name="Cust_type" style="width: 22.8%;">
 	      <option value="HOTEL">Hotel</option>
 	      <option value="INDIVIDUAL">Individual</option>
-	    </select>		</td>
-			</tr>
-		</table>
-
+	    </select></select> 
+	    <img onclick="showExistingCustomerGrid()" id="backIcon" style="height: 28px; width: 30px;" src= "<%=request.getContextPath()%>/Assets/Images/backButton.png"/><br>
+	    <br>
+	    </div>
 		
-		
-	    
-		<img onclick="showExistingCustomerGrid()" id="backIcon" style="height: 28px; width: 30px;" src= "<%=request.getContextPath()%>/Assets/Images/backButton.png"/><br>
+   		
+			    
 		<label><b>Customer Phone</b></label><br>
-		<input type="text" placeholder="Enter Customer Phone" id= "AddNewCustomer_Phone" name="AddNewCustomer_Phone" maxlength=100 required><br>
+		<input type="text" placeholder="Enter Customer Phone" id= "AddNewCustomer_Phone" name="AddNewCustomer_Phone" maxlength=100 required style=" width: 53.2%;"><br>
 		<label><b>Customer Address</b></label><br>
-		<input type="text" placeholder="Enter Customer Address" id= "AddNewCustomer_Address" name="AddNewCustomer_Address" maxlength=100 required><br>
+		<input type="text" placeholder="Enter Customer Address" id= "AddNewCustomer_Address" name="AddNewCustomer_Address" maxlength=100 required  style=" width: 53.2%;"><br>
 		</div>
 		
 
 
      <label><b>Amount</b></label><br>
-     <input type="text" placeholder="Enter Amount" id= "Trans_Amount" name="Trans_Amount" maxlength=10 required><br>
+     <input type="text" placeholder="Enter Amount" id= "Trans_Amount" name="Trans_Amount" maxlength=10 required style=" width: 53.2%;"><br>
      
      <label><b>Description</b></label><br>
-     <input type="text" placeholder="Enter Description" id= "Trans_Description" name="Trans_Description" required><br>
+     <input type="text" placeholder="Enter Description" id= "Trans_Description" name="Trans_Description" required style=" width: 53.2%;"><br>
 
      
    </div>
@@ -170,11 +167,14 @@ if(request.getAttribute("returnFlag_UpdateCRTransaction")!=null && request.getAt
 </body>
 
 
-<script type="text/javascript" src="<%=request.getContextPath()%>/Assets/Js/w3.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>/JS_Files/Transaction_CreditTo.js"></script>
+<script type="text/javascript" src="/Smarty_DBMS_New/Assets/Js/w3.js"></script>
+<script type="text/javascript" src="/Smarty_DBMS_New/JS_Files/Transaction_CreditTo.js"></script>
 
 <script>
 var gloablContextURL = "<%=request.getContextPath()%>";
+
+var AddTransaction_Status = 'null';
+var UpdateTransaction_Status = 'null';
 
 var AddTransaction_Status = '<%=returnFlag_AddNewCRTransaction%>';
 var UpdateTransaction_Status = '<%=returnFlag_UpdateCRTransaction%>';
