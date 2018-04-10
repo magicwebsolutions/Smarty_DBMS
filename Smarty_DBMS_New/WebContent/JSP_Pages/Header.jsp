@@ -18,6 +18,7 @@
  <script src="<%=request.getContextPath()%>/Assets/Alertify/alertify.min.js"></script>	
  <script src="<%=request.getContextPath()%>/Assets/Alertify/default.min.css"></script>
  <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/Assets/Alertify/alertify.min.css">
+ <script type="text/javascript" src="<%=request.getContextPath()%>/JS_Files/Dashboard.js"></script>
  </head>
 <body>
 
@@ -43,7 +44,7 @@
 	   <li><center><img class = "sideMenuIcons" src="<%=request.getContextPath()%>/Assets/Images/MenuIcons/Billing.png"/></center><div onclick="navigation('TRANSACTION');">Credit/Debit</div></li>
 	   <li><center><img class = "sideMenuIcons" src="<%=request.getContextPath()%>/Assets/Images/MenuIcons/settings.png"/></center><div  onclick="navigation('SETTINGS');">Settings</div></li>
 	   <li><center><img class = "sideMenuIcons" src="<%=request.getContextPath()%>/Assets/Images/MenuIcons/Billing.png"/></center><div onclick="navigation('REPORT');">Reports</div></li>
-	   <li><center><img class = "sideMenuIcons" src="<%=request.getContextPath()%>/Assets/Images/MenuIcons/upload.png"/></center><div>Backup</div></li>
+	   <li><center><img class = "sideMenuIcons" src="<%=request.getContextPath()%>/Assets/Images/MenuIcons/upload.png"/></center><div onclick = "generatebackup()">Backup</div></li>
 	  </ul>
 </div>
 </div>

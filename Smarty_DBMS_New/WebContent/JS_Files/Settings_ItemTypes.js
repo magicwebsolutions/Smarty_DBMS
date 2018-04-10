@@ -44,6 +44,13 @@ document.addEventListener('keyup', function(e) {
 
 
 function ListItemTypes(){	
+	document.getElementById("btn_EditItmsStngs").className += " button_disable";
+	document.getElementById("btn_EditItmsStngs").disabled = true;
+
+	document.getElementById("btn_DeleteItmsStngs").className += " button_disable";
+	document.getElementById("btn_DeleteItmsStngs").disabled = true;
+	
+	
 	var ItemType_URL = gloablContextURL+"/ListItemType?Event=LISTITEMTYPE";
 	if(window.XMLHttpRequest){
 	requestOBJ = new XMLHttpRequest();
@@ -94,6 +101,14 @@ if(responsetext.indexOf("~")>0){
 	$( rows ).appendTo( "#ItemTypeMain tbody" );
 	
 }
+else
+	{
+	document.getElementById("btn_EditItmsStngs").className += " button_disable";
+	document.getElementById("btn_EditItmsStngs").disabled = true;
+
+	document.getElementById("btn_DeleteItmsStngs").className += " button_disable";
+	document.getElementById("btn_DeleteItmsStngs").disabled = true;
+	}
 }
 }
 
@@ -108,6 +123,13 @@ for (var i = 0; i < cells.length; i++) {
     var cell = cells[i];
     // do something on onclick event for cell
     cell.onclick = function () {
+    	var element1 = document.getElementById("btn_EditItmsStngs");
+    	element1.classList.remove("button_disable");
+    	document.getElementById("btn_EditItmsStngs").disabled = false;
+
+    	var element2 = document.getElementById("btn_DeleteItmsStngs");
+    	element2.classList.remove("button_disable");
+    	document.getElementById("btn_DeleteItmsStngs").disabled = false;
         // Get the row id where the cell exists
         var rowId = this.parentNode.rowIndex;
         console.log("RowID--->"+rowId);

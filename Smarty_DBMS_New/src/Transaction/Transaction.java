@@ -71,7 +71,7 @@ public class Transaction extends HttpServlet {
 				out.println(getItemsBuffer.toString());			
 			}
 			else if(event.equalsIgnoreCase("ADDNEWCREDITTOTRANSACTION")){
-				String TransactionDate = request.getParameter("Trans_date");
+				String TransactionDate = request.getParameter("Add_Trans_date");
 				String TransactionAmount = request.getParameter("Trans_Amount");
 				String TransactionDescription = request.getParameter("Trans_Description");
 				String TransactionCustIID = request.getParameter("getCustomerDropDown");

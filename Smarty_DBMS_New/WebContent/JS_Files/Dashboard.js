@@ -201,5 +201,39 @@ Highcharts.chart('line-chart', {
     }
 
 });
+}
 
+
+function generatebackup(){
+	 if(navigator.onLine)
+    {
+        alert("Browser is online");
+        triggerEmail();
+    }
+    else
+    {
+        alert("Browser is offline");
+    }
+}
+
+function triggerEmail(){
+	var URL = gloablContextURL+"/Dashboard?Event=MAILTRIGGER";
+	if(window.XMLHttpRequest){
+	requestOBJ = new XMLHttpRequest();
+	}else if(window.ActiveXObject){
+		requestOBJ= new ActivXCObject("Microsoft.XMLHTTP");
+	}
+	try{
+	requestOBJ.onreadystatechange=triggerEmailResponse;
+	requestOBJ.open("POST",URL,true);
+	requestOBJ.setRequestHeader("Content-type", "text/xml");
+	requestOBJ.send();
+	}catch(e){
+	alert("Something went wrong");
+	}
+}
+
+function triggerEmailResponse(){
+	
+	
 }

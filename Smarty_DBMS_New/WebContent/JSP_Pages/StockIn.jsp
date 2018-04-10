@@ -31,8 +31,8 @@ if(request.getAttribute("returnFlag_UpdateStockIn")!=null && request.getAttribut
        </div>
 	</nav>
 	<div style="margin-top: 115px;">
-	<button onclick="OpenModalPopup('addStock')" class="button" style="vertical-align:middle"><span>Load Stock Details</span></button> 
-	<button onclick="OpenModalPopup('editStockDtsls');setEditTransactionData();" class="button" style="vertical-align:middle"><span>Edit Stock Details</span></button> 
+	<button id="stk_loadDtls" onclick="OpenModalPopup('addStock')" class="button" style="vertical-align:middle"><span>Load Stock Details</span></button> 
+	<button id="stk_EditDtls" onclick="OpenModalPopup('editStockDtsls');setEditTransactionData();" class="button" style="vertical-align:middle"><span>Edit Stock Details</span></button> 
 	<input oninput="w3.filterHTML('#StockInDetails', '.item', this.value)" placeholder="Search Details" style="margin-left: 678px;">
 	</div>
 	

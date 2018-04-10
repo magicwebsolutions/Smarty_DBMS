@@ -29,8 +29,8 @@ if(request.getAttribute("returnFlag_UpdateCRTransaction")!=null && request.getAt
        </div>
 	</nav>
 	<div style="margin-top: 115px;">
-	<button onclick="OpenModalPopup('addCustomerTransaction')"  class="button" style="vertical-align:middle"><span>New Transaction</span></button> 
-	<button onclick="OpenModalPopup('editCustomerTransaction');setEditTransactionData();"  class="button" style="vertical-align:middle"><span>Edit Transaction</span></button> 
+	<button id= "btn_NewTrans" onclick="OpenModalPopup('addCustomerTransaction')"  class="button" style="vertical-align:middle"><span>New Transaction</span></button> 
+	<button id= "btn_EditTrans" onclick="OpenModalPopup('editCustomerTransaction');setEditTransactionData();"  class="button" style="vertical-align:middle"><span>Edit Transaction</span></button> 
 	<input oninput="w3.filterHTML('#TransactionCredit', '.item', this.value)" placeholder="Search Details" style="margin-left: 343px;width: 22%;">
 	</div>
 	
@@ -66,7 +66,7 @@ if(request.getAttribute("returnFlag_UpdateCRTransaction")!=null && request.getAt
   
   <div>
   		<h2 style="margin-left: 15px;">Add Transaction</h2>
-      	<span onclick="CloseModalPopup('addCustomerTransaction')" class="close" title="Close Modal" >&times;</span>
+      	<span onclick="CloseModalPopup('addCustomerTransaction');showExistingCustomerGrid()" class="close" title="Close Modal" >&times;</span>
   </div>
   
    <input type="hidden" name="Event" maxlength=50 value="ADDNEWCREDITTOTRANSACTION"></input>
@@ -78,7 +78,7 @@ if(request.getAttribute("returnFlag_UpdateCRTransaction")!=null && request.getAt
 		<td><label><b>Select Item</b></label></td>
    	</tr>
    	<tr>
-   		<td style="width: 50%;"> <input type="date" id="Add_Trans_date" name="Trans_date"></td>
+   		<td style="width: 50%;"> <input type="date" id="Add_Trans_date" name="Add_Trans_date"></td>
 		<td><select id="getItemsDropDown" name="getItemsDropDown"  class="soflow"></select> <br></td>
    	</tr>
    	</table>

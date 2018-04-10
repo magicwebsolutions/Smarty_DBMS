@@ -5,7 +5,10 @@ var SelectedRowDataSet =[];
 
 function ListCustomers()
 {	
+document.getElementById("setting_edit_btn").className += " button_disable";
 document.getElementById("setting_edit_btn").disabled = true;
+
+document.getElementById("setting_delete_btn").className += " button_disable";
 document.getElementById("setting_delete_btn").disabled = true;
 	
 var URL = gloablContextURL+"/ListCustomer?Event=LISTCUSTOMER";
@@ -59,6 +62,12 @@ if(responsetext.indexOf("~")>0){
 	});
 	$( rows ).appendTo( "#customerListTable tbody" );
 	
+}else{
+	document.getElementById("setting_edit_btn").className += " button_disable";
+	document.getElementById("setting_edit_btn").disabled = true;
+
+	document.getElementById("setting_delete_btn").className += " button_disable";
+	document.getElementById("setting_delete_btn").disabled = true;
 }
 }
 }
@@ -74,6 +83,15 @@ for (var i = 0; i < cells.length; i++) {
     var cell = cells[i];
     // do something on onclick event for cell
     cell.onclick = function () {
+    	
+
+    	var element1 = document.getElementById("setting_edit_btn");
+    	element1.classList.remove("button_disable");
+    	document.getElementById("setting_edit_btn").disabled = false;
+
+    	var element2 = document.getElementById("setting_delete_btn");
+    	element2.classList.remove("button_disable");
+    	document.getElementById("setting_delete_btn").disabled = false;
         // Get the row id where the cell exists
     	document.getElementById("setting_edit_btn").disabled = false;
     	document.getElementById("setting_delete_btn").disabled = false;

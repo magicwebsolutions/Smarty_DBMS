@@ -4,6 +4,7 @@ var CTransaction_SelectedRowDataSet =[];
 var today = new Date();
 var Customerarray;	
 var WindowType ="";
+var formattedDate;
 
 function OpenModalPopup(popupName){document.getElementById(popupName).style.display='block';}
 function CloseModalPopup(popupName){document.getElementById(popupName).style.display='none';}
@@ -19,14 +20,20 @@ document.addEventListener('keyup', function(e) {
 
 function onload()
 {	
+document.getElementById("btn_EditTrans").className += " button_disable";
+document.getElementById("btn_EditTrans").disabled = true;
   document.getElementById("newcustomeraddiv").hidden = true;
   var dd = today.getDate();
   var mm = today.getMonth()+1; 
   var yyyy = today.getFullYear();
-  //yyyy = parseInt(yyyy) + 1;
   yyyy = parseInt(yyyy);
   today = yyyy+'-'+mm+'-'+dd
-  //document.getElementById("Trans_date").value = today; 
+  
+  	mm = ('0'+mm+'').slice(-2);
+	dd = ('0'+dd+'').slice(-2);
+	formattedDate = yyyy + '-' + mm + '-' + dd;
+	document.getElementById("Trans_date").value = formattedDate;
+	document.getElementById("Add_Trans_date").value = formattedDate;	
 }
 
 
@@ -34,7 +41,6 @@ function getCurrentDayTransaction(param){
 	var datePassed 
 	if(param == 'today'){
 		datePassed = today
-		document.getElementById("Trans_date").value = today;
 		}
 	else if(param == 'searchDate'){
 		datePassed = document.getElementById("Trans_date").value;
@@ -102,6 +108,9 @@ function CurrentDayTransactionResponse(){
 		    var cell = cells[i];
 		    // do something on onclick event for cell
 		    cell.onclick = function () {
+		    	var element = document.getElementById("btn_EditTrans");
+		    	element.classList.remove("button_disable");
+		    	document.getElementById("btn_EditTrans").disabled = false;
 		        // Get the row id where the cell exists
 		        var rowId = this.parentNode.rowIndex;
 		        console.log("RowID--->"+rowId);
@@ -131,6 +140,8 @@ function CurrentDayTransactionResponse(){
 	}
 	else
 		{
+			document.getElementById("btn_EditTrans").className += " button_disable";
+			document.getElementById("btn_EditTrans").disabled = true;
 			document.getElementById("TransactionCredit").hidden = true;
 			document.getElementById("NoTransactionMsg").hidden = false;
 		}

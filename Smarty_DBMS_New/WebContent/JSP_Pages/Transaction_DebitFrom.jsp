@@ -31,8 +31,8 @@ if(request.getAttribute("returnFlag_UpdateDRTransaction")!=null && request.getAt
        </div>
 	</nav>
 	<div style="margin-top: 115px;">
-	<button onclick="OpenModalPopup('addCustomerTransaction_DR')"  class="button" style="vertical-align:middle"><span>New Transaction</span></button> 
-	<button onclick="OpenModalPopup('editCustomerTransaction_DR');setEditTransactionData();"  class="button" style="vertical-align:middle"><span>Edit Transaction</span></button> 
+	<button id= "btn_newDebitTrans"onclick="OpenModalPopup('addCustomerTransaction_DR')"  class="button" style="vertical-align:middle"><span>New Transaction</span></button> 
+	<button id= "btn_EditDebitTrans" onclick="OpenModalPopup('editCustomerTransaction_DR');setEditTransactionData();"  class="button" style="vertical-align:middle"><span>Edit Transaction</span></button> 
 	<input oninput="w3.filterHTML('#TransactionCredit', '.item', this.value)" placeholder="Search Details" style="margin-left: 836px;">
 	</div>
 	
@@ -72,7 +72,7 @@ if(request.getAttribute("returnFlag_UpdateDRTransaction")!=null && request.getAt
    <div class="container">
    
 	     <label><b>Transaction Date</b></label><br>
-	     <input type="date" id="Add_Trans_date" name="Trans_date"><br>
+	     <input type="date" id="Add_Trans_date" name="Add_Trans_date"><br>
 		     
 		<label><b>Select Customer</b></label><br>
 		<select id="getCustomerDropDown" name="getCustomerDropDown" class="soflow">		 

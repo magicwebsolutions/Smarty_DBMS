@@ -51,9 +51,9 @@ if(request.getAttribute("returnFlag_DeleteItemType")!=null && request.getAttribu
 	</nav>
 	
 	<div style="margin-top: 115px;">
-	<button onclick="OpenModalPopup('addItemType')" class="button" style="vertical-align:middle"><span>New</span></button> 
-	<button onclick="OpenModalPopup('editItemType');setItemTypeEditData();"  class="button" style="vertical-align:middle"><span>Edit</span></button> 
-	<button onclick="OpenModalPopup('deleteItemType');showdeleteItem();" class="button" style="vertical-align:middle"><span>Delete</span></button>
+	<button id="btn_NewItmsStngs" onclick="OpenModalPopup('addItemType')" class="button" style="vertical-align:middle"><span>New</span></button> 
+	<button id="btn_EditItmsStngs" onclick="OpenModalPopup('editItemType');setItemTypeEditData();"  class="button" style="vertical-align:middle"><span>Edit</span></button> 
+	<button id="btn_DeleteItmsStngs" onclick="OpenModalPopup('deleteItemType');showdeleteItem();" class="button" style="vertical-align:middle"><span>Delete</span></button>
 	<input oninput="w3.filterHTML('#ItemTypeMain', '.item', this.value)" placeholder="Search Details" style="margin-left: 343px;width: 22%;">
 	</div>
 	

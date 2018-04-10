@@ -22,7 +22,7 @@
 }
 
 .page_body {	
-	    margin-top: 60px;
+    margin-top: 60px;
     background-color: aliceblue;
     position: fixed;
     width: 100%;
@@ -522,7 +522,8 @@ height: 40px;
   right: 0;
 }
 
-.disabled {
+.button_disable,
+.button_disable span {
     opacity: 0.65;
-    cursor: !not-allowed;
+    cursor: not-allowed !important;
 }
