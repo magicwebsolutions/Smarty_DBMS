@@ -39,7 +39,6 @@ public class EditCustomer extends HttpServlet {
 		
 		
 		String Event = request.getParameter("EVENT");
-		System.out.println("Event--->"+Event);
 		HashMap EDITCUSTOMERDtlsMap = new HashMap();
 		String InsertNewCustStatus ;
 		EditCustomerDAO addCustObj= new EditCustomerDAO();

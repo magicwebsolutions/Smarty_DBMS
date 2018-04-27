@@ -37,7 +37,6 @@ public class DeleteCustomer extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String Event = request.getParameter("EVENT");
-		System.out.println("Event--->"+Event);
 		HashMap DeleteCustomerDtlsMap = new HashMap();
 		String DeleteCustStatus ;
 		DeleteCustomerDAO deleteCustObj= new DeleteCustomerDAO();

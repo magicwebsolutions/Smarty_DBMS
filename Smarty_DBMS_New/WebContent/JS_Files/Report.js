@@ -1,239 +1,225 @@
 var dataSet;
 var today = new Date();
 
-function onload(){
-	  var mm = ("0" + (today.getMonth() + 1)).slice(-2);
-	  var yyyy = today.getFullYear();
-	  yyyy = parseInt(yyyy);
-	  var StartDateNumber = "0"+1;
-	  var EndDateNumber = 30;
-	  if(mm == 02){EndDateNumber = 28;}
-	  document.getElementById("Start_Date").value=  yyyy+'-'+mm+'-'+StartDateNumber;
-	  document.getElementById("End_Date").value=  yyyy+'-'+mm+'-'+EndDateNumber;
-	  getSummary(yyyy+'-'+mm+'-'+StartDateNumber,yyyy+'-'+mm+'-'+EndDateNumber);
+function onload() {
+	var mm = ("0" + (today.getMonth() + 1)).slice(-2);
+	var yyyy = today.getFullYear();
+	yyyy = parseInt(yyyy);
+	var StartDateNumber = "0" + 1;
+	var EndDateNumber = 30;
+	if (mm == 02) {
+		EndDateNumber = 28;
+	}
+	document.getElementById("Start_Date").value = yyyy + '-' + mm + '-'
+			+ StartDateNumber;
+	document.getElementById("End_Date").value = yyyy + '-' + mm + '-'
+			+ EndDateNumber;
+	getSummary(yyyy + '-' + mm + '-' + StartDateNumber, yyyy + '-' + mm + '-'
+			+ EndDateNumber);
 }
 
-function getSummary(searchType){	
+function getSummary(searchType) {
 	debugger;
-	if(searchType == 'onload'){
+	if (searchType == 'onload') {
 		var mm = ("0" + (today.getMonth() + 1)).slice(-2);
-		  var yyyy = today.getFullYear();
-		  yyyy = parseInt(yyyy);
-		  var StartDateNumber = "0"+1;
-		  var EndDateNumber = 30;
-		  if(mm == 02){EndDateNumber = 28;}
-		  document.getElementById("Start_Date").value=  yyyy+'-'+mm+'-'+StartDateNumber;
-		  document.getElementById("End_Date").value=  yyyy+'-'+mm+'-'+EndDateNumber;
-		  var startDate= yyyy+'-'+mm+'-'+StartDateNumber;
-		  var endDate= yyyy+'-'+mm+'-'+EndDateNumber;
-		  
+		var yyyy = today.getFullYear();
+		yyyy = parseInt(yyyy);
+		var StartDateNumber = "0" + 1;
+		var EndDateNumber = 30;
+		if (mm == 02) {
+			EndDateNumber = 28;
+		}
+		document.getElementById("Start_Date").value = yyyy + '-' + mm + '-'
+				+ StartDateNumber;
+		document.getElementById("End_Date").value = yyyy + '-' + mm + '-'
+				+ EndDateNumber;
+		var startDate = yyyy + '-' + mm + '-' + StartDateNumber;
+		var endDate = yyyy + '-' + mm + '-' + EndDateNumber;
 
-		  var URL = gloablContextURL+"/Report?Event=GETSUMMARY&fromdate="+startDate+"&enddate="+endDate;
-			if(window.XMLHttpRequest){
+		var URL = gloablContextURL + "/Report?Event=GETSUMMARY&fromdate="
+				+ startDate + "&enddate=" + endDate;
+		if (window.XMLHttpRequest) {
 			requestOBJ = new XMLHttpRequest();
-			}else if(window.ActiveXObject){
-				requestOBJ= new ActivXCObject("Microsoft.XMLHTTP");
-			}
-			try{
-			requestOBJ.onreadystatechange=getSummaryResponseOnload;
-			requestOBJ.open("POST",URL,true);
+		} else if (window.ActiveXObject) {
+			requestOBJ = new ActivXCObject("Microsoft.XMLHTTP");
+		}
+		try {
+			requestOBJ.onreadystatechange = getSummaryResponseOnload;
+			requestOBJ.open("POST", URL, true);
 			requestOBJ.setRequestHeader("Content-type", "text/xml");
 			requestOBJ.send();
-			}catch(e){
+		} catch (e) {
 			alert("Something went wrong");
-			}
-		
-	}
-	else if(searchType = 'manual'){		
+		}
+
+	} else if (searchType = 'manual') {
 		var givenStartDate = document.getElementById("Start_Date").value;
 		var givenEndDate = document.getElementById("End_Date").value;
-		var URL = gloablContextURL+"/Report?Event=GETSUMMARY&fromdate="+givenStartDate+"&enddate="+givenEndDate;
-		if(window.XMLHttpRequest){
-		requestOBJ = new XMLHttpRequest();
-		}else if(window.ActiveXObject){
-			requestOBJ= new ActivXCObject("Microsoft.XMLHTTP");
+		var URL = gloablContextURL + "/Report?Event=GETSUMMARY&fromdate="
+				+ givenStartDate + "&enddate=" + givenEndDate;
+		if (window.XMLHttpRequest) {
+			requestOBJ = new XMLHttpRequest();
+		} else if (window.ActiveXObject) {
+			requestOBJ = new ActivXCObject("Microsoft.XMLHTTP");
 		}
-		try{
-		requestOBJ.onreadystatechange=getSummaryResponseManual;
-		requestOBJ.open("POST",URL,true);
-		requestOBJ.setRequestHeader("Content-type", "text/xml");
-		requestOBJ.send();
-		}catch(e){
-		alert("Something went wrong");
-		}		
+		try {
+			requestOBJ.onreadystatechange = getSummaryResponseManual;
+			requestOBJ.open("POST", URL, true);
+			requestOBJ.setRequestHeader("Content-type", "text/xml");
+			requestOBJ.send();
+		} catch (e) {
+			alert("Something went wrong");
+		}
 	}
 }
 
-
-
-
-function getSummaryResponseOnload(){
+function getSummaryResponseOnload() {
 	var itemarray;
-	if(requestOBJ.readyState==4){
-	if(requestOBJ.status==200){
-	var responsetext= requestOBJ.responseText;	
-	responsetext= responsetext.replace("<xml>","");
-	console.log("responsetext in ONLOAD---->"+responsetext);
-	debugger;
-	if(responsetext.indexOf("~")>0){
-		debugger;
-		var finalResponse = responsetext.substring(0, responsetext.lastIndexOf('#'));
-		itemarray = finalResponse.split("#");
-		var data = [];
-		for(var i=0; i<itemarray.length;i++){
-			data.push(
-					{
+	if (requestOBJ.readyState == 4) {
+		if (requestOBJ.status == 200) {
+			var responsetext = requestOBJ.responseText;
+			responsetext = responsetext.replace("<xml>", "");
+			debugger;
+			if (responsetext.indexOf("~") > 0) {
+				debugger;
+				var finalResponse = responsetext.substring(0, responsetext
+						.lastIndexOf('#'));
+				itemarray = finalResponse.split("#");
+				var data = [];
+				for (var i = 0; i < itemarray.length; i++) {
+					data.push({
 						CustomerID : itemarray[i].split('~')[0],
 						Date : itemarray[i].split('~')[1],
 						Name : itemarray[i].split('~')[2],
 						Credit : itemarray[i].split('~')[3],
 						Debit : itemarray[i].split('~')[4],
 						Outstanding : itemarray[i].split('~')[5]
-					}		
-					
-			);		
+					}
+
+					);
+				}
+				debugger;
+				data;
+				dataSet = data;
+
+				var rowCount = incomeexpsummary.rows.length;
+				for (var i = rowCount - 1; i > 0; i--) {
+					incomeexpsummary.deleteRow(i);
+				}
+
+				var rows = "";
+				$.each(dataSet, function() {
+					rows += "<tr class='item'><td>" + this.CustomerID
+							+ "</td><td>" + this.Date + "</td><td>" + this.Name
+							+ "</td><td>" + this.Credit + "</td><td>"
+							+ this.Debit + "</td><td>" + this.Outstanding
+							+ "</td></tr>";
+				});
+				$(rows).appendTo("#incomeexpsummary tbody");
+
+			} else {
+				var rowCount = incomeexpsummary.rows.length;
+				for (var i = rowCount - 1; i > 0; i--) {
+					incomeexpsummary.deleteRow(i);
+				}
+			}
 		}
-		debugger;
-		data;	
-		dataSet = data;
-		
-		 var rowCount = incomeexpsummary.rows.length;
-	        for (var i = rowCount - 1; i > 0; i--) {
-	        	incomeexpsummary.deleteRow(i);
-	        }
-				
-		var rows = "";
-		$.each(dataSet, function(){
-		    rows += "<tr class='item'><td>" + this.CustomerID + "</td><td>" + this.Date + "</td><td>" + this.Name + "</td><td>" + this.Credit + "</td><td>" + this.Debit + "</td><td>" + this.Outstanding + "</td></tr>";
-		});		
-		$(rows).appendTo( "#incomeexpsummary tbody" );
-		
-	}
-	else
-		{
-		 var rowCount = incomeexpsummary.rows.length;
-	        for (var i = rowCount - 1; i > 0; i--) {
-	        	incomeexpsummary.deleteRow(i);
-	        }
-		}
-	}
 	}
 
-	/*For Table Highlight and Variable set for Editing*/
+	/* For Table Highlight and Variable set for Editing */
 	var table = document.getElementById('incomeexpsummary');
-	debugger;
-	console.log("table-->"+table);
-	debugger;
 	var cells = table.getElementsByTagName('td');
 	for (var i = 0; i < cells.length; i++) {
-	    // Take each cell
-	    var cell = cells[i];
-	    // do something on onclick event for cell
-	    cell.onclick = function () {
-	        // Get the row id where the cell exists
-	        var rowId = this.parentNode.rowIndex;
-	        console.log("RowID--->"+rowId);
-	        var rowsNotSelected = table.getElementsByTagName('tr');
-	        for (var row = 0; row < rowsNotSelected.length; row++) {
-	            rowsNotSelected[row].style.backgroundColor = "";
-	            rowsNotSelected[row].classList.remove('selected');
-	        }
-	        console.log("rowsNotSelected--->"+rowsNotSelected);
-	        debugger;
-	        var rowSelected = table.getElementsByTagName('tr')[rowId];
-	        console.log("rowSelected--->"+rowSelected);
-	        rowSelected.style.backgroundColor = "#d0e4f1";
-	        rowSelected.className += " selected";
-	        debugger;
-	    }
+		// Take each cell
+		var cell = cells[i];
+		// do something on onclick event for cell
+		cell.onclick = function() {
+			// Get the row id where the cell exists
+			var rowId = this.parentNode.rowIndex;
+			var rowsNotSelected = table.getElementsByTagName('tr');
+			for (var row = 0; row < rowsNotSelected.length; row++) {
+				rowsNotSelected[row].style.backgroundColor = "";
+				rowsNotSelected[row].classList.remove('selected');
+			}
+			var rowSelected = table.getElementsByTagName('tr')[rowId];
+			rowSelected.style.backgroundColor = "#d0e4f1";
+			rowSelected.className += " selected";
+		}
 	}
 }
 
-
-
-
-
-
-
-function getSummaryResponseManual(){
+function getSummaryResponseManual() {
 	debugger;
 	var itemarray;
-	if(requestOBJ.readyState==4){
-	if(requestOBJ.status==200){
-	var responsetext= requestOBJ.responseText;	
-	responsetext= responsetext.replace("<xml>","");
-	debugger;
-	console.log("responsetext in MANUAL---->"+responsetext);
-	if(responsetext.indexOf("~")>0){
-		debugger;
-		var finalResponse = responsetext.substring(0, responsetext.lastIndexOf('#'));
-		itemarray = finalResponse.split("#");
-		var data = [];
-		for(var i=0; i<itemarray.length;i++){
-			data.push(
-					{
+	if (requestOBJ.readyState == 4) {
+		if (requestOBJ.status == 200) {
+			var responsetext = requestOBJ.responseText;
+			responsetext = responsetext.replace("<xml>", "");
+			debugger;
+			if (responsetext.indexOf("~") > 0) {
+				debugger;
+				var finalResponse = responsetext.substring(0, responsetext
+						.lastIndexOf('#'));
+				itemarray = finalResponse.split("#");
+				var data = [];
+				for (var i = 0; i < itemarray.length; i++) {
+					data.push({
 						CustomerID : itemarray[i].split('~')[0],
 						Date : itemarray[i].split('~')[1],
 						Name : itemarray[i].split('~')[2],
 						Credit : itemarray[i].split('~')[3],
 						Debit : itemarray[i].split('~')[4],
 						Outstanding : itemarray[i].split('~')[5]
-					}		
-					
-			);		
+					}
+
+					);
+				}
+				debugger;
+				data;
+				dataSet = data;
+
+				var rowCount = incomeexpsummary.rows.length;
+				for (var i = rowCount - 1; i > 0; i--) {
+					incomeexpsummary.deleteRow(i);
+				}
+
+				var rows = "";
+				$.each(dataSet, function() {
+					rows += "<tr class='item'><td>" + this.CustomerID
+							+ "</td><td>" + this.Date + "</td><td>" + this.Name
+							+ "</td><td>" + this.Credit + "</td><td>"
+							+ this.Debit + "</td><td>" + this.Outstanding
+							+ "</td></tr>";
+				});
+				$(rows).appendTo("#incomeexpsummary tbody");
+
+			} else {
+				var rowCount = incomeexpsummary.rows.length;
+				for (var i = rowCount - 1; i > 0; i--) {
+					incomeexpsummary.deleteRow(i);
+				}
+			}
 		}
-		debugger;
-		data;	
-		dataSet = data;
-				
-		 var rowCount = incomeexpsummary.rows.length;
-	        for (var i = rowCount - 1; i > 0; i--) {
-	        	incomeexpsummary.deleteRow(i);
-	        }
-				
-		var rows = "";
-		$.each(dataSet, function(){
-		    rows += "<tr class='item'><td>" + this.CustomerID + "</td><td>" + this.Date + "</td><td>" + this.Name + "</td><td>" + this.Credit + "</td><td>" + this.Debit + "</td><td>" + this.Outstanding + "</td></tr>";
-		});		
-		$(rows).appendTo( "#incomeexpsummary tbody" );
-		
-	}
-	else
-		{
-		var rowCount = incomeexpsummary.rows.length;
-        for (var i = rowCount - 1; i > 0; i--) {
-        	incomeexpsummary.deleteRow(i);
-        }
-		}
-	}
 	}
 
-	/*For Table Highlight and Variable set for Editing*/
+	/* For Table Highlight and Variable set for Editing */
 	var table = document.getElementById('incomeexpsummary');
-	debugger;
-	console.log("table-->"+table);
-	debugger;
 	var cells = table.getElementsByTagName('td');
 	for (var i = 0; i < cells.length; i++) {
-	    // Take each cell
-	    var cell = cells[i];
-	    // do something on onclick event for cell
-	    cell.onclick = function () {
-	        // Get the row id where the cell exists
-	        var rowId = this.parentNode.rowIndex;
-	        console.log("RowID--->"+rowId);
-	        var rowsNotSelected = table.getElementsByTagName('tr');
-	        for (var row = 0; row < rowsNotSelected.length; row++) {
-	            rowsNotSelected[row].style.backgroundColor = "";
-	            rowsNotSelected[row].classList.remove('selected');
-	        }
-	        console.log("rowsNotSelected--->"+rowsNotSelected);
-	        debugger;
-	        var rowSelected = table.getElementsByTagName('tr')[rowId];
-	        console.log("rowSelected--->"+rowSelected);
-	        rowSelected.style.backgroundColor = "#d0e4f1";
-	        rowSelected.className += " selected";
-	        debugger;
-	    }
+		// Take each cell
+		var cell = cells[i];
+		// do something on onclick event for cell
+		cell.onclick = function() {
+			// Get the row id where the cell exists
+			var rowId = this.parentNode.rowIndex;
+			var rowsNotSelected = table.getElementsByTagName('tr');
+			for (var row = 0; row < rowsNotSelected.length; row++) {
+				rowsNotSelected[row].style.backgroundColor = "";
+				rowsNotSelected[row].classList.remove('selected');
+			}
+			var rowSelected = table.getElementsByTagName('tr')[rowId];
+			rowSelected.style.backgroundColor = "#d0e4f1";
+			rowSelected.className += " selected";
+		}
 	}
 }

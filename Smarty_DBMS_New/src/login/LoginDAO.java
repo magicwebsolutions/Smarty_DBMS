@@ -28,10 +28,6 @@ public class LoginDAO {
 		}
 		else if(l_Map.containsValue("Sublogin"))
 		{
-		System.out.println("Entering Sub login validation---->"+l_Map);
-		System.out.println("Entering Sub login validation password---->"+l_Map.get("Password"));
-		System.out.println("Entering Sub login validation RePassword---->"+l_Map.get("RePassword"));
-		System.out.println("Entering Sub login validation Hint---->"+l_Map.get("Hint"));
 		String key=null;
 		Loginquery = "UPDATE user_table SET PASSWORD = ? WHERE HINT=?";
 		String Hint="SELECT HINT FROM user_table";
@@ -39,25 +35,21 @@ public class LoginDAO {
 		rSet=psmt.executeQuery();
 		while(rSet.next()){
 			key=rSet.getString("HINT");
-			System.out.println("key is"+key);
 		}
 		if(hint_1.equalsIgnoreCase(key))
 		{
 		psmt=conn.prepareStatement(Loginquery);
 		psmt.setString(1,(String)l_Map.get("Password") );
 		psmt.setString(2,key);
-		System.out.println("The value of Hint"+key);
 		int a = psmt.executeUpdate();
 		if(a==1)
 		{
 			returnFlag ="UPDATE_PASSWORD";
-			System.out.println("Updated Password Successfully---->"+a);
 		}
 		}
 		else
 		{
 			returnFlag ="wronghint";
-			System.out.println("Updated Password unSuccessfully---->"+returnFlag);
 			
 			
 		}
@@ -65,10 +57,8 @@ public class LoginDAO {
 		
 		}
 		catch(Exception e){
-		System.out.println("inside exception......");
 		e.printStackTrace();
 		}
-		System.out.println("returnFlag in loginDAO......"+returnFlag);
 		return returnFlag;
 		
 	}

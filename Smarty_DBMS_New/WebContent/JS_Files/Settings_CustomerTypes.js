@@ -65,9 +65,7 @@ if(requestOBJ.readyState==4){
 if(requestOBJ.status==200){
 var responsetext= requestOBJ.responseText;
 responsetext= responsetext.replace("<xml>","");
-debugger;
 if(responsetext.indexOf("~")>0){
-	debugger;
 	var finalResponse = responsetext.substring(0, responsetext.lastIndexOf('#'));
 	itemarray = finalResponse.split("#");
 	for(var i=0; i<itemarray.length;i++){
@@ -82,7 +80,6 @@ if(responsetext.indexOf("~")>0){
 				
 		);		
 	}
-	debugger;
 	CustType_data;	
 	CustType_dataSet = CustType_data;	
 	
@@ -98,9 +95,6 @@ if(responsetext.indexOf("~")>0){
 
 /*For Table Highlight and Variable set for Editing*/
 var table = document.getElementById('CustomerTypeMain');
-debugger;
-console.log("table-->"+table);
-debugger;
 var cells = table.getElementsByTagName('td');
 for (var i = 0; i < cells.length; i++) {
     // Take each cell
@@ -109,19 +103,14 @@ for (var i = 0; i < cells.length; i++) {
     cell.onclick = function () {
         // Get the row id where the cell exists
         var rowId = this.parentNode.rowIndex;
-        console.log("RowID--->"+rowId);
         var rowsNotSelected = table.getElementsByTagName('tr');
         for (var row = 0; row < rowsNotSelected.length; row++) {
             rowsNotSelected[row].style.backgroundColor = "";
             rowsNotSelected[row].classList.remove('selected');
         }
-        console.log("rowsNotSelected--->"+rowsNotSelected);
-        debugger;
         var rowSelected = table.getElementsByTagName('tr')[rowId];
-        console.log("rowSelected--->"+rowSelected);
         rowSelected.style.backgroundColor = "#d0e4f1";
         rowSelected.className += " selected";
-        debugger;
         CustType_SelectedRowDataSet = {
         		SelectedRowID : rowId,
         		TypeID : rowSelected.cells[0].innerHTML,
@@ -130,7 +119,6 @@ for (var i = 0; i < cells.length; i++) {
         		Status : rowSelected.cells[3].innerHTML,
         		Date : rowSelected.cells[4].innerHTML
         }
-        debugger;
     }
 }
 }
@@ -163,9 +151,7 @@ if(requestOBJ.readyState==4){
 if(requestOBJ.status==200){
 var responsetext= requestOBJ.responseText;
 responsetext= responsetext.replace("<xml>","");
-debugger;
 /*if(responsetext.indexOf("~")>0){
-	debugger;
 	var finalResponse = responsetext.substring(0, responsetext.lastIndexOf('#'));
 	addCustType_itemarray = finalResponse.split("#");
 	for(var i=0; i<addCustType_itemarray.length;i++){
@@ -182,7 +168,6 @@ debugger;
 				
 		);		
 	}
-	debugger;
 	AddCustType_data;	
 	AddCustType_dataSet = AddCustType_data;
 	

@@ -39,7 +39,6 @@ public class EditCustomerType extends HttpServlet {
 		
 		response.getWriter().append("Served atsdfsfsdfd: ").append(request.getContextPath());
 		String Event = request.getParameter("EVENT");
-		System.out.println("Event--->"+Event);
 		HashMap<String, String> EditCustomerTypeDtlsMap = new HashMap<String, String>();
 		String EditCustTypeStatus ;
 		EditCustomerTypeDAO editCustTypeObj= new EditCustomerTypeDAO();

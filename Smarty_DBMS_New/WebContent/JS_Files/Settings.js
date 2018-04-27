@@ -32,9 +32,7 @@ if(requestOBJ.readyState==4){
 if(requestOBJ.status==200){
 var responsetext= requestOBJ.responseText;
 responsetext= responsetext.replace("<xml>","");
-debugger;
 if(responsetext.indexOf("~")>0){
-	debugger;
 	var finalResponse = responsetext.substring(0, responsetext.lastIndexOf('#'));
 	itemarray = finalResponse.split("#");
 	for(var i=0; i<itemarray.length;i++){
@@ -51,7 +49,6 @@ if(responsetext.indexOf("~")>0){
 				
 		);		
 	}
-	debugger;
 	data;	
 	dataSet = data;
 	
@@ -74,9 +71,6 @@ if(responsetext.indexOf("~")>0){
 
 /*For Table Highlight and Variable set for Editing*/
 var table = document.getElementById('customerListTable');
-debugger;
-console.log("table-->"+table);
-debugger;
 var cells = table.getElementsByTagName('td');
 for (var i = 0; i < cells.length; i++) {
     // Take each cell
@@ -96,19 +90,14 @@ for (var i = 0; i < cells.length; i++) {
     	document.getElementById("setting_edit_btn").disabled = false;
     	document.getElementById("setting_delete_btn").disabled = false;
         var rowId = this.parentNode.rowIndex;
-        console.log("RowID--->"+rowId);
         var rowsNotSelected = table.getElementsByTagName('tr');
         for (var row = 0; row < rowsNotSelected.length; row++) {
             rowsNotSelected[row].style.backgroundColor = "";
             rowsNotSelected[row].classList.remove('selected');
         }
-        console.log("rowsNotSelected--->"+rowsNotSelected);
-        debugger;
         var rowSelected = table.getElementsByTagName('tr')[rowId];
-        console.log("rowSelected--->"+rowSelected);
         rowSelected.style.backgroundColor = "#d0e4f1";
         rowSelected.className += " selected";
-        debugger;
         SelectedRowDataSet = {
         		SelectedRowID : rowId,
         		CustomerID : rowSelected.cells[0].innerHTML,
@@ -116,7 +105,6 @@ for (var i = 0; i < cells.length; i++) {
         		Phone : rowSelected.cells[2].innerHTML,
         		Address : rowSelected.cells[3].innerHTML
         }
-        debugger;
     }
 }
 
@@ -151,9 +139,7 @@ if(requestOBJ.readyState==4){
 if(requestOBJ.status==200){
 var responsetext= requestOBJ.responseText;
 responsetext= responsetext.replace("<xml>","");
-debugger;
 if(responsetext.indexOf("~")>0){
-	debugger;
 	var finalResponse = responsetext.substring(0, responsetext.lastIndexOf('#'));
 	itemarray = finalResponse.split("#");
 	for(var i=0; i<itemarray.length;i++){
@@ -170,7 +156,6 @@ if(responsetext.indexOf("~")>0){
 				
 		);		
 	}
-	debugger;
 	data;	
 	dataSet = data;
 	

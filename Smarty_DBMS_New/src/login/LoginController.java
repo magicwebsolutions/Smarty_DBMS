@@ -16,88 +16,80 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/LoginController")
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public LoginController() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public LoginController() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String validation_Status ="FALSE";
-		String UserName=null;
-		String Password=null;
-		String Repassword=null;
-		String Hint=null;
-		HashMap h_map=null;
-		PrintWriter out=response.getWriter();
-		if(request.getParameter("UserName")!=null && request.getParameter("UserName")!="" && request.getParameter("User_pwd")!=null
-			&& request.getParameter("User_pwd")!="")
-		{
-			UserName= request.getParameter("UserName");
+		String validation_Status = "FALSE";
+		String UserName = null;
+		String Password = null;
+		String Repassword = null;
+		String Hint = null;
+		HashMap h_map = null;
+		PrintWriter out = response.getWriter();
+		if (request.getParameter("UserName") != null && request.getParameter("UserName") != ""
+				&& request.getParameter("User_pwd") != null && request.getParameter("User_pwd") != "") {
+			UserName = request.getParameter("UserName");
 			Password = request.getParameter("User_pwd");
 			h_map = new HashMap();
 			h_map.put("flag", "Mainlogin");
-			h_map.put("USER_NAME",UserName);
-			h_map.put("USER_PWD",Password);
-		}
-		else
-		{
-			Hint= request.getParameter("hint");
-			Password= request.getParameter("User_pwd1");
+			h_map.put("USER_NAME", UserName);
+			h_map.put("USER_PWD", Password);
+		} else {
+			Hint = request.getParameter("hint");
+			Password = request.getParameter("User_pwd1");
 			Repassword = request.getParameter("User_pwd2");
 			h_map = new HashMap();
 			h_map.put("flag", "Sublogin");
 			h_map.put("Hint", Hint);
-			h_map.put("Password",Password);
-			h_map.put("RePassword",Repassword);	
+			h_map.put("Password", Password);
+			h_map.put("RePassword", Repassword);
 		}
-		LoginDAO login =new LoginDAO();
-		System.out.println("Going to enter LoginDAO class for checking user...");
+		LoginDAO login = new LoginDAO();
 		validation_Status = login.validateUser(h_map);
-		System.out.println("Status "+validation_Status);
-		if(validation_Status=="TRUE"){
-			System.out.println("Login successfull for user "+UserName);
+		if (validation_Status == "TRUE") {
 			request.setAttribute("status", "success");
 			request.getRequestDispatcher("/JSP_Pages/Login.jsp").forward(request, response);
 
+		} else if (validation_Status == "wronghint") {
+			request.setAttribute("status", "wronghint");
+			request.getRequestDispatcher("Login.jsp").forward(request, response);
 		}
-			else if(validation_Status=="wronghint"){
-				System.out.println("Login Unsuccessfull for user22222 "+Hint);
-				request.setAttribute("status", "wronghint");
-				request.getRequestDispatcher("Login.jsp").forward(request, response);
-			}
-		
-		
-			else if(validation_Status=="UPDATE_PASSWORD"){
-				System.out.println("Login Unsuccessfull for user4444 "+Hint);
-				request.setAttribute("status", "updated");
-				request.getRequestDispatcher("Login.jsp").forward(request, response);
-			}
-		
-			else{
-					System.out.println("Login Unsuccessfull for user333333 "+UserName);
-					System.out.println("wrngggggggggggg");
-				       out.print("alert('User or password incorrect');");
-				       
-					request.setAttribute("status", "failure");
-					request.getRequestDispatcher("Login.jsp").forward(request, response);
+
+		else if (validation_Status == "UPDATE_PASSWORD") {
+			request.setAttribute("status", "updated");
+			request.getRequestDispatcher("Login.jsp").forward(request, response);
+		}
+
+		else {
+			out.print("alert('User or password incorrect');");
+
+			request.setAttribute("status", "failure");
+			request.getRequestDispatcher("Login.jsp").forward(request, response);
 
 		}
-		}
+	}
 
 }

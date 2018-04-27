@@ -93,7 +93,6 @@ public class Transaction extends HttpServlet {
 				AddNewTransactionMap.put("TransactionNewCustAddress_key", TransactionNewCustAddress);
 				AddNewTransactionMap.put("TransactionNewCustType_key", TransactionNewCustType);
 				String AddTransactionStatus = TransactionDAO.addNewCreditToTransaction(AddNewTransactionMap);
-				System.out.println("HCueeeeeeeeeeeeee---->"+AddTransactionStatus);
 				if(AddTransactionStatus.equalsIgnoreCase("success")){
 					request.setAttribute("returnFlag_AddNewCRTransaction", AddTransactionStatus);
 					request.getRequestDispatcher("/JSP_Pages/Transaction_CreditTo.jsp").forward(request,response);			
@@ -143,7 +142,7 @@ public class Transaction extends HttpServlet {
 			}
 			
 			else if(event.equalsIgnoreCase("ADDNEWDEBITFROMTRANSACTION")){
-				String TransactionDate = request.getParameter("Trans_date");
+				String TransactionDate = request.getParameter("Add_Trans_date");
 				String TransactionAmount = request.getParameter("Trans_Amount");
 				String TransactionDescription = request.getParameter("Trans_Description");
 				String TransactionCustIID = request.getParameter("getCustomerDropDown");

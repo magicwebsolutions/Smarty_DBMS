@@ -8,6 +8,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Properties;
 
 import javax.activation.DataHandler;
@@ -31,7 +35,6 @@ public class DashboardDAO {
 
 	public String ListDashboardData() {
 
-		System.out.println("INTO DahsboardDAO CLASSS");
 		StringBuffer dashboard_data = null;
 		Connection conn = null;
 		String outstandingQuery = "SELECT Cust_ID,Cust_Name,Cust_Outstanding FROM Customer_Info where Cust_Status='ACTIVE' and Cust_Outstanding > 0 order by Cust_Outstanding desc limit 10";
@@ -55,7 +58,6 @@ public class DashboardDAO {
 			}
 			dashboard_data.append("|");
 
-			System.out.println("Query for for search item--->" + dashboard_data);
 			psmt1 = conn.prepareStatement(salesItemRatioQuery);
 			rSet1 = psmt1.executeQuery();
 			while (rSet1.next()) {
@@ -66,7 +68,6 @@ public class DashboardDAO {
 			}
 
 		} catch (Exception e) {
-			System.out.println("Something went wrong during Unit........");
 			e.printStackTrace();
 
 		} finally {
@@ -95,51 +96,47 @@ public class DashboardDAO {
 	/* For Email Trigger Methods */
 
 	public static String mailProcess() {
-		System.out.println("mailProcess:::::::::::::: INSIDE");
-		System.out.println("mailProcess:::1111111111111111111::::::::::: INSIDE");
 		Connection conn = null;
 		ResultSet rSet = null;
 		PreparedStatement psmt = null;
 		String configDtlsQuery = "select configname,configvalue from configuration";
-		String bakcupPath ="";
-		String sqlDumpPath ="";
-		String sqlUname ="";
-		String sqlPwd ="";
-		String sqlDbName ="";
-		/*String backupLocalFlag = "N";
-		String backupMailFlag = "N";*/
-		
-		System.out.println("mailProcess:::2222222222222222222::::::::::: INSIDE");
+		String bakcupPath = "";
+		String sqlDumpPath = "";
+		String sqlUname = "";
+		String sqlPwd = "";
+		String sqlDbName = "";
+		/*
+		 * String backupLocalFlag = "N"; String backupMailFlag = "N";
+		 */
+
 		try {
 			conn = DbConnection.getConnection();
 			psmt = conn.prepareStatement(configDtlsQuery);
 			rSet = psmt.executeQuery();
-			System.out.println("mailProcess:::333333333333333333333333333333333::::::::::: INSIDE");
 			while (rSet.next()) {
-				if(rSet.getString("configname").equals("BACKUPPATH")){
+				if (rSet.getString("configname").equals("BACKUPPATH")) {
 					bakcupPath = rSet.getString("configvalue");
 				}
-				if(rSet.getString("configname").equals("SQLDUMPPATH")){
+				if (rSet.getString("configname").equals("SQLDUMPPATH")) {
 					sqlDumpPath = rSet.getString("configvalue");
 				}
-				if(rSet.getString("configname").equals("SQLDBUSERNAME")){
+				if (rSet.getString("configname").equals("SQLDBUSERNAME")) {
 					sqlUname = rSet.getString("configvalue");
 				}
-				if(rSet.getString("configname").equals("SQLDBPWD")){
+				if (rSet.getString("configname").equals("SQLDBPWD")) {
 					sqlPwd = rSet.getString("configvalue");
 				}
-				if(rSet.getString("configname").equals("SQLDBNAME")){
+				if (rSet.getString("configname").equals("SQLDBNAME")) {
 					sqlDbName = rSet.getString("configvalue");
 				}
-				/*if(rSet.getString("configname").equals("BACKUPLOCAL")){
-					backupLocalFlag = rSet.getString("configvalue");
-				}
-				if(rSet.getString("configname").equals("BACKUPMAIL")){
-					backupMailFlag = rSet.getString("configvalue");
-				}*/
-			}	
-		}catch (Exception e) {
-			System.out.println("Something went wrong during mailProcess........");
+				/*
+				 * if(rSet.getString("configname").equals("BACKUPLOCAL")){
+				 * backupLocalFlag = rSet.getString("configvalue"); }
+				 * if(rSet.getString("configname").equals("BACKUPMAIL")){
+				 * backupMailFlag = rSet.getString("configvalue"); }
+				 */
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
 
 		} finally {
@@ -159,25 +156,16 @@ public class DashboardDAO {
 			}
 
 		}
-		System.out.println("mailProcess:::44444444444:::555:::::::: INSIDE");
-		System.out.println("bakcupPath--->"+bakcupPath);
-		System.out.println("sqlDumpPath--->"+sqlDumpPath);
-		System.out.println("sqlUname--->"+sqlUname);
-		System.out.println("sqlPwd--->"+sqlPwd);
-		System.out.println("sqlDbName--->"+sqlDbName);
-		System.out.println("bakcupPath.replaceAll--->"+bakcupPath.replaceAll("\"", "\\"));
-		
-		
-		
+		String filenameformed = new SimpleDateFormat("yyyyMMddHHmm'.txt'").format(new Date());
+
 		boolean connectionExist = false;
 		String createBkup = null;
-		final String filename = bakcupPath.replaceAll("\"", "\\") + "\\dbBackUp.sql";
+		final String filename = bakcupPath.replaceAll("\"", "\\") + "\\" + filenameformed;
 		String result = null;
 		try {
 			connectionExist = checkConnection();
 			if (connectionExist) {
-				System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@111111111111111");
-				createBkup = createBkup(filename,sqlDumpPath,sqlUname,sqlPwd,sqlDbName);
+				createBkup = createBkup(filename, sqlDumpPath, sqlUname, sqlPwd, sqlDbName);
 				if (createBkup != null && createBkup.equals("SUCCESS")) {
 					result = triggerMail(filename);
 				} else {
@@ -189,7 +177,6 @@ public class DashboardDAO {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
-			System.out.println("Inside mailProcess method::result::" + result);
 			return result;
 		}
 	}
@@ -217,7 +204,6 @@ public class DashboardDAO {
 				return new PasswordAuthentication(user, password);
 			}
 		});
-		System.out.println("1111111111111111111111111111111111" + session);
 		try {
 			MimeMessage message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(user));
@@ -240,7 +226,6 @@ public class DashboardDAO {
 
 			Transport.send(message);
 			result = "MAIL_TRIGGERED";
-			System.out.println("message sent....");
 
 		} catch (MessagingException ex) {
 			ex.printStackTrace();
@@ -249,27 +234,26 @@ public class DashboardDAO {
 		return result;
 	}
 
-	public static String createBkup(String fileName,String sqlDumpPath,String sqlUname,String sqlPwd,String sqlDbName) {
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@22222222222222222222");
+	public static String createBkup(String fileName, String sqlDumpPath, String sqlUname, String sqlPwd,
+			String sqlDbName) {
 		Process p = null;
 		String result = null;
-		
-		String formation = sqlDumpPath+"\\"+"mysqldump "+"-u"+sqlUname+" -p"+sqlPwd+" --add-drop-database -B "+sqlDbName+" -r";
-		System.out.println("FORMATIONNNNNNNNNNNNNNNNNNNNNNN____>"+formation);
-		System.out.println("C:\\Program Files (x86)\\MySQL\\MySQL Server 5.0\\bin\\mysqldump -uroot -p1234 --add-drop-database -B smarty_dbms -r");
+
+		String formation = sqlDumpPath + "\\" + "mysqldump " + "-u" + sqlUname + " -p" + sqlPwd
+				+ " --add-drop-database -B " + sqlDbName + " -r";
 		try {
 			Runtime runtime = Runtime.getRuntime();
-			p = runtime
-					.exec("C:\\Program Files (x86)\\MySQL\\MySQL Server 5.0\\bin\\mysqldump -uroot -p1234 --add-drop-database -B smarty_dbms -r "
-							+ fileName);
+			/*
+			 * p = runtime
+			 * .exec("C:\\Program Files (x86)\\MySQL\\MySQL Server 5.0\\bin\\mysqldump -uroot -p1234 --add-drop-database -B smarty_dbms -r "
+			 * + fileName);
+			 */
+			p = runtime.exec(formation + fileName);
 			int processComplete = p.waitFor();
 			if (processComplete == 0) {
 				result = "SUCCESS";
-				System.out.println("Backup created successfully!");
-
 			} else {
 				result = "FAIL";
-				System.out.println("Could not create the backup");
 			}
 		} catch (Exception e) {
 			result = "FAIL";
@@ -285,7 +269,6 @@ public class DashboardDAO {
 			URLConnection connection = url.openConnection();
 			connection.connect();
 			flag = true;
-			System.out.println("internet connection exist..!");
 		} catch (MalformedURLException ex) {
 			ex.printStackTrace();
 			flag = false;
@@ -296,7 +279,6 @@ public class DashboardDAO {
 			ex.printStackTrace();
 			flag = false;
 		} finally {
-			System.out.println("checkConnection::flag::" + flag);
 			return flag;
 		}
 	}

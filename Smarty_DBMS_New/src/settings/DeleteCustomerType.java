@@ -37,14 +37,12 @@ public class DeleteCustomerType extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String Event = request.getParameter("EVENT");
-		System.out.println("Event--->"+Event);
 		HashMap DeleteCustomerTypeDtlsMap = new HashMap();
 		String DeleteCustTypeStatus ;
 		DeleteCustomerTypeDAO deleteCustTypeObj= new DeleteCustomerTypeDAO();
 		
 		if(Event.equalsIgnoreCase("DELETECUSTOMERTYPE")){
 			String delete_CustType_Id = request.getParameter("delete_CustType_Id");
-			System.out.println("delete_CustType_Id--DAO-->"+delete_CustType_Id);
 			DeleteCustomerTypeDtlsMap.put("Event_key", Event);
 			DeleteCustomerTypeDtlsMap.put("Delete_CustTypeId_key", delete_CustType_Id);
 			DeleteCustTypeStatus = deleteCustTypeObj.deleteCustomerTypeDtls(DeleteCustomerTypeDtlsMap);

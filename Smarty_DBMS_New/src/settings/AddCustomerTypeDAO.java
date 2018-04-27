@@ -20,7 +20,6 @@ public class AddCustomerTypeDAO {
 			
 			String NEWCUSTOMERTYPE_INSERT="INSERT INTO Maintenance_Master(Value,Description,Status,Param_1,Created_dt) values (?,?,'ACTIVE','CUST_TYPE',SYSDATE())";
 			conn = (Connection) dbConnection.DbConnection.getConnection();
-			System.out.println("666666666666666666666666--->"+conn);
 			psmt1 = (PreparedStatement) conn.prepareStatement(NEWCUSTOMERTYPE_INSERT);
 			psmt1.setString(1, (String)newCustData.get("CustTypeName_key"));
 			psmt1.setString(2, (String)newCustData.get("CustTypeDescription_key"));

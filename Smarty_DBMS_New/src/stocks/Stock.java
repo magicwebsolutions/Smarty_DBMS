@@ -51,7 +51,6 @@ public class Stock extends HttpServlet {
 				
 				String DateToPass = request.getParameter("datePassed");
 				stockType = request.getParameter("screentype");
-				System.out.println("stockType-11111111111-->"+stockType);
 				response.setContentType("text/plain");
 				PrintWriter out = response.getWriter();
 				StockInBuffer.append(StockDAO.ListStockDetails(DateToPass,stockType));		
@@ -105,7 +104,7 @@ public class Stock extends HttpServlet {
 					}
 			}
 			else if(event.equalsIgnoreCase("ADDNEWSTOCKSALESDTLS")){				
-				String StockoutDate = request.getParameter("Add_Stockout_date");
+				String StockoutDate = request.getParameter("Add_Stock_date");
 				String StockoutAmount = request.getParameter("Stockout_Amt");
 				String StockoutDescription = request.getParameter("Stockout_Description");
 				String StockoutItemIID = request.getParameter("getItemsDropDown");

@@ -11,7 +11,6 @@ import dbConnection.*;
 public class ListCustomerDAO {
 	
 	public String ListCustomer() {
-		System.out.println("INTO DAO CLASSS");
 		StringBuffer Unit_Buffer = null;
 		Connection conn =null;
 		String query = "SELECT Cust_ID,Cust_Name,Cust_Phone,Cust_Address,Cust_CR_Amt,Cust_DR_Amt,Cust_Outstanding FROM Customer_Info where Cust_Status='ACTIVE'";
@@ -22,7 +21,6 @@ public class ListCustomerDAO {
 			Unit_Buffer = new StringBuffer();
 			conn = DbConnection.getConnection();			
 			 psmt = conn.prepareStatement(query);
-			 System.out.println("Query for for search item--->"+query);		
 			 rSet=psmt.executeQuery();
 			while(rSet.next()){
 				Unit_Buffer.append(rSet.getString("Cust_ID"));
@@ -45,7 +43,6 @@ public class ListCustomerDAO {
 		
 		}
 		catch(Exception e){
-			System.out.println("Something went wrong during Unit........");
 			e.printStackTrace();
 			
 		}finally{
@@ -69,7 +66,6 @@ public class ListCustomerDAO {
 			}
 			
 		}		
-		System.out.println("sdlkfjsdlkfjklsdjfkldsjklfjdsklj---->"+Unit_Buffer.toString());
 		return Unit_Buffer.toString();
 	}
 

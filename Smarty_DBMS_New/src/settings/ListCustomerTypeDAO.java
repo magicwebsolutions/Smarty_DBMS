@@ -10,8 +10,6 @@ import dbConnection.DbConnection;
 public class ListCustomerTypeDAO {
 	
 	public String ListCustomerType() {
-		System.out.println("Inside ------------ListCustomerTypeDAO");
-		System.out.println("INTO DAO CLASSS");
 		StringBuffer Unit_Buffer = null;
 		Connection conn =null;
 		String query = "SELECT Unique_ID,Value,Description,Status,Created_Dt FROM Maintenance_Master where Param_1 = 'CUST_TYPE'";
@@ -22,7 +20,6 @@ public class ListCustomerTypeDAO {
 				Unit_Buffer = new StringBuffer();
 				conn = DbConnection.getConnection();			
 				psmt = conn.prepareStatement(query);
-				System.out.println("Query for for search item--->"+query);		
 				rSet=psmt.executeQuery();
 			while(rSet.next()){
 				Unit_Buffer.append(rSet.getString("Unique_ID"));
@@ -41,7 +38,6 @@ public class ListCustomerTypeDAO {
 		
 		}
 		catch(Exception e){
-			System.out.println("Something went wrong during Unit........");
 			e.printStackTrace();
 			
 		}finally{
@@ -65,7 +61,6 @@ public class ListCustomerTypeDAO {
 			}
 			
 		}		
-		System.out.println("sdlkfjsdlkfjklsdjfkldsjklfjdsklj---->"+Unit_Buffer.toString());
 		return Unit_Buffer.toString();
 	}
 

@@ -68,7 +68,6 @@ function CurrentDayTransactionResponse(){
 	responsetext= responsetext.replace("<xml>","");
 	if(responsetext.indexOf("~")>0){
 		var finalResponse = responsetext.substring(0, responsetext.lastIndexOf('#'));
-		console.log("finalResponse------>"+finalResponse)
 		itemarray = finalResponse.split("#");
 		data.length = 0;
 		for(var i=0; i<itemarray.length;i++){
@@ -100,7 +99,6 @@ function CurrentDayTransactionResponse(){
 		$( rows ).appendTo( "#TransactionCredit tbody" );
 		
 		var table = document.getElementById('TransactionCredit');
-		console.log("table-->"+table);
 		var cells = table.getElementsByTagName('td');
 		for (var i = 0; i < cells.length; i++) {
 		    // Take each cell
@@ -112,15 +110,12 @@ function CurrentDayTransactionResponse(){
 		    	document.getElementById("btn_EditDebitTrans").disabled = false;
 		        // Get the row id where the cell exists
 		        var rowId = this.parentNode.rowIndex;
-		        console.log("RowID--->"+rowId);
 		        var rowsNotSelected = table.getElementsByTagName('tr');
 		        for (var row = 0; row < rowsNotSelected.length; row++) {
 		            rowsNotSelected[row].style.backgroundColor = "";	
 		            rowsNotSelected[row].classList.remove('selected');
 		        }
-		        console.log("rowsNotSelected--->"+rowsNotSelected);
 		        var rowSelected = table.getElementsByTagName('tr')[rowId];
-		        console.log("rowSelected--->"+rowSelected);
 		        rowSelected.style.backgroundColor = "#d0e4f1";
 		        rowSelected.className += " selected";
 		        CTransaction_SelectedRowDataSet = {
@@ -153,7 +148,6 @@ function CurrentDayTransactionResponse(){
 /*For Fetching Customer to map in dropdown*/
 //function getExistingCustomers(type){
 	function getExistingCustomers(type){
-	debugger;
 	WindowType = type;
 	var getCustomerURL = gloablContextURL+"/Transaction?Event=GET_CUSTOMERS";
 	if(window.XMLHttpRequest){
@@ -162,12 +156,10 @@ function CurrentDayTransactionResponse(){
 		requestOBJ= new ActivXCObject("Microsoft.XMLHTTP");
 	}
 	try{
-		debugger;
 		requestOBJ.onreadystatechange=ExistingCustomersnResponse;
 		requestOBJ.open("POST",getCustomerURL,true);
 		requestOBJ.setRequestHeader("Content-type", "text/xml");
 		requestOBJ.send();
-	debugger;
 	}catch(e){
 	alert("Something went wrong");
 	}
@@ -175,20 +167,14 @@ function CurrentDayTransactionResponse(){
 
 
 function ExistingCustomersnResponse(){
-	debugger;
 	if(WindowType == 'NEW'){
 		var select = document.getElementById("getCustomerDropDown"); 
 		var option = null;	
-		debugger;
 		if(requestOBJ.readyState==4){
-			debugger;
 		if(requestOBJ.status==200){
-			debugger;
 		var responsetext= requestOBJ.responseText;
 		responsetext= responsetext.replace("<xml>","");
-		debugger;
 		if(responsetext.indexOf("~")>0){
-			debugger;
 			var finalResponse = responsetext.substring(0, responsetext.lastIndexOf('#'));
 			Customerarray = finalResponse.split("#");
 			for(var i=0; i<Customerarray.length;i++){			
@@ -197,7 +183,6 @@ function ExistingCustomersnResponse(){
 			        option.innerHTML = Customerarray[i].split('~')[1];		        
 			        select.appendChild(option);			
 			}
-			debugger;
 			data;	
 			dataSet = data;
 		}
@@ -211,9 +196,7 @@ function ExistingCustomersnResponse(){
 		if(requestOBJ.status==200){
 		var responsetext= requestOBJ.responseText;
 		responsetext= responsetext.replace("<xml>","");
-		debugger;
 		if(responsetext.indexOf("~")>0){
-			debugger;
 			var finalResponse = responsetext.substring(0, responsetext.lastIndexOf('#'));
 			Customerarray = finalResponse.split("#");
 			for(var i=0; i<Customerarray.length;i++){			
@@ -225,7 +208,6 @@ function ExistingCustomersnResponse(){
 			        }
 			        select.appendChild(option);			
 			}
-			debugger;
 			data;	
 			dataSet = data;
 		}
@@ -262,7 +244,6 @@ function getExistingItems(type){
 
 
 function ExistingItemsResponse(){
-	debugger;
 	var Itemsrarray;	
 	if(WindowType == 'NEW'){
 	var select = document.getElementById("getItemsDropDown"), option = null;	
@@ -270,9 +251,7 @@ function ExistingItemsResponse(){
 	if(requestOBJ.status==200){
 	var responsetext= requestOBJ.responseText;
 	responsetext= responsetext.replace("<xml>","");
-	debugger;
 	if(responsetext.indexOf("~")>0){
-		debugger;
 		var finalResponse = responsetext.substring(0, responsetext.lastIndexOf('#'));
 		Itemsrarray = finalResponse.split("#");
 		for(var i=0; i<Itemsrarray.length;i++){			
@@ -281,7 +260,6 @@ function ExistingItemsResponse(){
 		        option.innerHTML = Itemsrarray[i].split('~')[1];
 		        select.appendChild(option);
 		}
-		debugger;
 		data;	
 		dataSet = data;
 	}
@@ -298,9 +276,7 @@ var select = document.getElementById("Edit_getItemsDropDown"), option = null;
 	if(requestOBJ.status==200){
 	var responsetext= requestOBJ.responseText;
 	responsetext= responsetext.replace("<xml>","");
-	debugger;
 	if(responsetext.indexOf("~")>0){
-		debugger;
 		var finalResponse = responsetext.substring(0, responsetext.lastIndexOf('#'));
 		Itemsrarray = finalResponse.split("#");
 		for(var i=0; i<Itemsrarray.length;i++){			
@@ -312,7 +288,6 @@ var select = document.getElementById("Edit_getItemsDropDown"), option = null;
 		        }		        
 		        select.appendChild(option);
 		}
-		debugger;
 		data;	
 		dataSet = data;
 	}
@@ -325,14 +300,12 @@ var select = document.getElementById("Edit_getItemsDropDown"), option = null;
 function setEditTransactionData(){
 	getExistingCustomers('EDIT');
 	
-	 debugger;
 	  //var dd = today.getDate();
 	  //var mm = today.getMonth()+1; 
 	  //var yyyy = today.getFullYear();
 	  //yyyy = parseInt(yyyy) + 1;
 	 // yyyy = parseInt(yyyy);
 	  //today = yyyy+'-'+mm+'-'+dd
-	  debugger;
 	  //document.getElementById("Trans_date").value = today; 
 	  Customerarray;
 	

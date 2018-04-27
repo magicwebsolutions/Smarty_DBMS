@@ -105,7 +105,6 @@ function CurrentDayStockResponse() {
 				$(rows).appendTo("#StockInDetails tbody");
 
 				var table = document.getElementById('StockInDetails');
-				console.log("table-->" + table);
 				var cells = table.getElementsByTagName('td');
 				for (var i = 0; i < cells.length; i++) {
 					// Take each cell
@@ -123,10 +122,8 @@ function CurrentDayStockResponse() {
 							rowsNotSelected[row].classList.remove('selected');
 						}
 						var rowSelected = table.getElementsByTagName('tr')[rowId];
-						console.log("rowSelected--->" + rowSelected);
 						rowSelected.style.backgroundColor = "#d0e4f1";
 						rowSelected.className += " selected";
-						debugger;
 						StockIn_SelectedRowDataSet = {
 							SelectedRowID : rowId,
 							StockID : rowSelected.cells[0].innerHTML,
@@ -171,7 +168,6 @@ function getExistingItems(type) {
 }
 
 function ExistingItemsResponse() {
-	debugger;
 	var Itemsrarray;
 	if (WindowType == 'NEW') {
 		var select = document.getElementById("getItemsDropDown"), option = null;
@@ -179,9 +175,7 @@ function ExistingItemsResponse() {
 			if (requestOBJ.status == 200) {
 				var responsetext = requestOBJ.responseText;
 				responsetext = responsetext.replace("<xml>", "");
-				debugger;
 				if (responsetext.indexOf("~") > 0) {
-					debugger;
 					var finalResponse = responsetext.substring(0, responsetext
 							.lastIndexOf('#'));
 					Itemsrarray = finalResponse.split("#");
@@ -191,7 +185,6 @@ function ExistingItemsResponse() {
 						option.innerHTML = Itemsrarray[i].split('~')[1];
 						select.appendChild(option);
 					}
-					debugger;
 					data;
 					dataSet = data;
 				}
@@ -207,9 +200,7 @@ function ExistingItemsResponse() {
 			if (requestOBJ.status == 200) {
 				var responsetext = requestOBJ.responseText;
 				responsetext = responsetext.replace("<xml>", "");
-				debugger;
 				if (responsetext.indexOf("~") > 0) {
-					debugger;
 					var finalResponse = responsetext.substring(0, responsetext
 							.lastIndexOf('#'));
 					Itemsrarray = finalResponse.split("#");
@@ -223,7 +214,6 @@ function ExistingItemsResponse() {
 						}
 						select.appendChild(option);
 					}
-					debugger;
 					data;
 					dataSet = data;
 				}

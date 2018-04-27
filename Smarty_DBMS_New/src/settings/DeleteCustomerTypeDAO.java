@@ -26,7 +26,6 @@ public class DeleteCustomerTypeDAO {
 			conn = (Connection) dbConnection.DbConnection.getConnection();
 			psmt1 = (PreparedStatement) conn.prepareStatement(Delete_CustomerType_Dtls);
 			psmt1.setString(1, (String)deleteCustData.get("Delete_CustTypeId_key"));
-			System.out.println("Delete_CustomerType_Dtls--->"+psmt1);
 			insertedRow = psmt1.executeUpdate();
 			if(insertedRow > 0){				
 				DeleteStatus = "Success";

@@ -42,7 +42,6 @@ public class DeleteItemType extends HttpServlet {
 		DeleteItemTypeDAO deleteCustTypeObj= new DeleteItemTypeDAO();
 		
 		if(Event.equalsIgnoreCase("DELETEITEMTYPE")){
-			System.out.println("111111111111111111111111111111111111111111111111111");
 			String delete_ItemType_Id = request.getParameter("delete_ItemType_Id");
 			DeleteItemTypeDtlsMap.put("Event_key", Event);
 			DeleteItemTypeDtlsMap.put("Delete_ItemTypeId_key", delete_ItemType_Id);

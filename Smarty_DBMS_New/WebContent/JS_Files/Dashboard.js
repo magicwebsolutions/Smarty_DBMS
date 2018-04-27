@@ -50,7 +50,6 @@ if(responsetext.indexOf("~")>0){
 		if(itemRatioarray[j].split('~')[0].trim().length > 0 && itemRatioarray[j].split('~')[1].trim().length > 0){item_Sales_Ration.push({"name" : itemRatioarray[j].split('~')[0],"y":parseInt(itemRatioarray[j].split('~')[1])});}
 	}
 	debugger;
-	console.log("OutstandingData--->"+OutstandingData);
 	Loading();
 }
 }
@@ -203,18 +202,22 @@ Highcharts.chart('line-chart', {
 });
 }
 
-
 function generatebackup(){
 	 if(navigator.onLine)
-    {
-        alert("Browser is online");
+    {        
         triggerEmail();
+        alertify.notify('Backup is in progress please wait...', 'success');
     }
     else
     {
-        alert("Browser is offline");
+        alertify.notify('Computer is not connected to Internet', 'error');
     }
 }
+
+alertify.destroy();
+alertify.close();
+alertify.notify.close();
+alertify.notify.destroy();
 
 function triggerEmail(){
 	var URL = gloablContextURL+"/Dashboard?Event=MAILTRIGGER";
@@ -229,11 +232,12 @@ function triggerEmail(){
 	requestOBJ.setRequestHeader("Content-type", "text/xml");
 	requestOBJ.send();
 	}catch(e){
-	alert("Something went wrong");
+		alertify.notify('Something Went Wrong Please try again', 'error');
 	}
 }
 
 function triggerEmailResponse(){
-	
-	
+if(requestOBJ.readyState==4){
+	alertify.notify('Backup Mailed Successfully', 'success');
+}	
 }

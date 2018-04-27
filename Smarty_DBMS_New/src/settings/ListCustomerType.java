@@ -29,7 +29,6 @@ public class ListCustomerType extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("Inside ------------ListCustomerType111111111111");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
@@ -37,7 +36,6 @@ public class ListCustomerType extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("Inside ------------ListCustomerType");
 		String event ="";
 		StringBuffer itemBuffer = new StringBuffer();
 		

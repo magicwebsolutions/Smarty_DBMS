@@ -108,7 +108,6 @@ function CurrentDayStockResponse() {
 				$(rows).appendTo("#StockOutDetails tbody");
 
 				var table = document.getElementById('StockOutDetails');
-				console.log("table-->" + table);
 				var cells = table.getElementsByTagName('td');
 				for (var i = 0; i < cells.length; i++) {
 					// Take each cell
@@ -129,7 +128,6 @@ function CurrentDayStockResponse() {
 							rowsNotSelected[row].classList.remove('selected');
 						}
 						var rowSelected = table.getElementsByTagName('tr')[rowId];
-						console.log("rowSelected--->" + rowSelected);
 						rowSelected.style.backgroundColor = "#d0e4f1";
 						rowSelected.className += " selected";
 						debugger;

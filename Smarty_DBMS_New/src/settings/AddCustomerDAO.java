@@ -19,7 +19,6 @@ public class AddCustomerDAO {
 			
 			String NEWCUSTOMER_INSERT="INSERT INTO customer_info(Cust_Type,Cust_Name,Cust_Phone,Cust_Address,Cust_CR_Amt,Cust_DR_Amt,Cust_Outstanding,Cust_Status,Created_dt,Modified_Dt) values (?,?,?,?,0,0,0,'ACTIVE',SYSDATE(),SYSDATE())";
 			conn = (Connection) dbConnection.DbConnection.getConnection();
-			System.out.println("666666666666666666666666--->"+conn);
 			psmt1 = (PreparedStatement) conn.prepareStatement(NEWCUSTOMER_INSERT);
 			psmt1.setString(1, (String)newCustData.get("CustType_key"));
 			psmt1.setString(2, (String)newCustData.get("CustName_key"));
